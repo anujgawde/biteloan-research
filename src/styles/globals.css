@@ -1,33 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Counter Animation */
+.counter {
+  display: flex;
+  align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.counter span {
+  font-size: 2rem;
+  margin: 0 1rem;
+  animation: countAnimation 0.5s ease-out forwards;
+}
+
+@keyframes countAnimation {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.ellipse1 {
+  /* width: 465.68px;
+  height: 465.68px; */
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background: rgba(134, 82, 255, 0.9);
+  box-shadow: 600px 600px 600px;
+  border-radius: 9999px;
+  filter: blur(600px);
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.ellipse2 {
+  /* width: 465.68px;
+  height: 465.68px; */
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: rgba(134, 82, 255, 0.9);
+  box-shadow: 600px 600px 600px;
+  border-radius: 9999px;
+  filter: blur(600px);
 }
