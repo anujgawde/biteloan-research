@@ -2,7 +2,6 @@
 
 import LoanSection from "@/components/LoanSection";
 
-import NewComponent from "@/components/NewComponent";
 import PersonalDetails from "@/components/PersonalDetails";
 import SavingsSection from "@/components/SavingsSection";
 import SuccessSection from "@/components/SuccessSection";
@@ -63,7 +62,7 @@ export default function Home() {
   };
   // Reload Stopper:
   useEffect(() => {
-    const confirmRefresh = (e) => {
+    const confirmRefresh = (e: any) => {
       e.preventDefault();
       e.returnValue = ""; // This line is necessary for Chrome
       const message = "Are you sure you want to refresh?";
@@ -80,8 +79,6 @@ export default function Home() {
 
   return (
     <main className="p">
-      {/* <LoanCalculator /> */}
-      {/* <NewComponent /> */}
       {formSectionId === 0 ? (
         <PersonalDetails
           changeSection={(id: number) => changeSection(id)}
