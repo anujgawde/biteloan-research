@@ -1,12 +1,50 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function PersonalDetails(props: any) {
+  const bankRange = [
+    "Bank of Baroda",
+    "Bank of India",
+    "Bank of Maharashtra",
+    "Canara Bank",
+    "Central Bank of India",
+    "Indian Bank",
+    "Indian Overseas Bank",
+    "Punjab & Sind Bank",
+    "Punjab National Bank",
+    "State Bank of India",
+    "UCO Bank",
+    "Union Bank of India",
+    "Axis Bank Ltd.",
+    "Bandhan Bank Ltd.",
+    "CSB Bank Ltd.",
+    "City Union Bank Ltd.",
+    "DCB Bank Ltd.",
+    "Dhanlaxmi Bank Ltd.",
+    "Federal Bank Ltd.",
+    "HDFC Bank Ltd",
+    "ICICI Bank Ltd.",
+    "Induslnd Bank Ltd",
+    "IDFC First Bank Ltd.",
+    "Jammu & Kashmir Bank Ltd.",
+    "Karnataka Bank Ltd.",
+    "Karur Vysya Bank Ltd.",
+    "Kotak Mahindra Bank Ltd",
+    "Nainital Bank Ltd.",
+    "RBL Bank Ltd.",
+    "South Indian Bank Ltd.",
+    "Tamilnad Mercantile Bank Ltd.",
+    "YES Bank Ltd.",
+    "IDBI Bank Ltd.",
+    "Others",
+  ];
+  const router = useRouter();
   // user variables:
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [ageGroup, setAgeGroup] = useState("18 - 25");
-  const [multipleLoans, setMultipleLoans] = useState(false);
+  const [bankProvider, setBankProvider] = useState("Bank of Baroda");
   const [employmentStatus, setEmploymentStatus] = useState("Employed");
   const [loanType, setLoantype] = useState("Housing");
 
@@ -67,6 +105,7 @@ export default function PersonalDetails(props: any) {
 
     return isValid;
   };
+
   return (
     <div className="font-sora bg-white ">
       <div className="h-[85vh] space-y-8 flex-1 overflow-y-scroll max-h-[85vh] py-10">
@@ -174,7 +213,7 @@ export default function PersonalDetails(props: any) {
                 </div>
               </div>
 
-              <div className="sm:col-span-1">
+              {/* <div className="sm:col-span-1">
                 <label
                   htmlFor="multiple-loans"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -187,13 +226,35 @@ export default function PersonalDetails(props: any) {
                     name="multiple-loans"
                     // autoComplete="country-name"
                     onChange={(e) =>
-                      setMultipleLoans(e.target.value === "Yes" ? true : false)
+                      setBankProvider(e.target.value === "Yes" ? true : false)
                     }
-                    value={multipleLoans === true ? "Yes" : "No"}
+                    value={bankProvider === true ? "Yes" : "No"}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
                     <option>Yes</option>
                     <option>No</option>
+                  </select>
+                </div>
+              </div> */}
+              <div className="sm:col-span-1">
+                <label
+                  htmlFor="multiple-loans"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Loan Provider
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="multiple-loans"
+                    name="multiple-loans"
+                    // autoComplete="country-name"
+                    onChange={(e) => setBankProvider(e.target.value)}
+                    value={bankProvider}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  >
+                    {bankRange.map((e, index) => (
+                      <option key={index}>{e}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -258,13 +319,13 @@ export default function PersonalDetails(props: any) {
           onClick={() => {
             if (validateForm()) {
               // Submit form data
-              console.log("Form submitted successfully!");
+
               props.userDetails({
                 fullName,
                 email,
                 phoneNumber,
                 ageGroup,
-                multipleLoans: multipleLoans ? "Yes" : "No",
+                bankProvider: bankProvider,
                 employmentStatus,
                 loanType,
               });

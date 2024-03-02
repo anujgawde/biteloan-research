@@ -6,7 +6,7 @@ type SheetForm = {
   email: string;
   phoneNumber: string;
   ageGroup: string;
-  multipleLoans: string;
+  bankProvider: string;
   employmentStatus: string;
   loanType: string;
   loanAmount?: number;
@@ -63,7 +63,7 @@ export default async function handler(
             body.email,
             body.phoneNumber,
             body.ageGroup,
-            body.multipleLoans,
+            body.bankProvider,
             body.employmentStatus,
             body.loanType,
             body.loanAmount,

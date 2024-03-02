@@ -160,7 +160,7 @@ export default function SavingsSection(props: any) {
       {/* CTA */}
       <div className="bg-white flex-col flex items-center justify-center w-[100vw] py-6 border-t h-[15vh] fixed bottom-0 z-50">
         <button
-          onClick={() => props.joinWaitList(prepaymentAmount)}
+          onClick={() => props.joinWaitList(prepaymentAmount, withPrepayment)}
           className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
         >
           Save{" "}
