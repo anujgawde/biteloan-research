@@ -47,3 +47,19 @@
   border-radius: 9999px;
   filter: blur(600px);
 }
+.ellipse3 {
+  /* width: 465.68px;
+  height: 465.68px; */
+  right: 0;
+  top: 0;
+  position: absolute;
+  background: rgba(134, 82, 255, 0.9);
+  box-shadow: 600px 600px 600px;
+  border-radius: 9999px;
+  filter: blur(100px);
+}
+@media screen and (min-width: 768px) {
+  .ellipse3 {
+    filter: blur(600px);
+  }
+}

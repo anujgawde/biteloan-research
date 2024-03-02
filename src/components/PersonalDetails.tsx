@@ -9,6 +9,14 @@ export default function PersonalDetails(props: any) {
   const [multipleLoans, setMultipleLoans] = useState(false);
   const [employmentStatus, setEmploymentStatus] = useState("Employed");
   const [loanType, setLoantype] = useState("Housing");
+
+  const [fullNameError, setFullNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[6-9]\d{9}$/; // Assuming Indian phone numbers start with 6, 7, 8, or 9
+
   const submitHandler = async (e: any) => {
     e.preventDefault();
     const response = await fetch("/api/submit", {
@@ -25,6 +33,39 @@ export default function PersonalDetails(props: any) {
       }),
     });
     const content = await response.json();
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+
+    if (fullName.trim().toString() === "") {
+      setFullNameError("Full name cannot be empty");
+      isValid = false;
+    } else {
+      setFullNameError("");
+    }
+
+    if (email.trim().toString() === "") {
+      setEmailError("Email cannot be empty");
+      isValid = false;
+    } else if (!emailRegex.test(email) && email.length) {
+      setEmailError("Invalid email format");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (phoneNumber.trim().toString() === "") {
+      setPhoneError("Phone number cannot be empty");
+      isValid = false;
+    } else if (!phoneRegex.test(phoneNumber) && phoneNumber.length) {
+      setPhoneError("Invalid phone number format");
+      isValid = false;
+    } else {
+      setPhoneError("");
+    }
+
+    return isValid;
   };
   return (
     <div className="font-sora bg-white ">
@@ -60,6 +101,8 @@ export default function PersonalDetails(props: any) {
                   className="block w-full  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+
+              <p className="text-xs text-red-600 mt-1">{fullNameError}</p>
             </div>
             <div className="sm:col-span-3">
               <label
@@ -81,6 +124,8 @@ export default function PersonalDetails(props: any) {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+
+              <p className="text-xs text-red-600 mt-1">{emailError}</p>
             </div>
             <div className="sm:col-span-3">
               <label
@@ -100,6 +145,8 @@ export default function PersonalDetails(props: any) {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+
+              <p className="text-xs text-red-600 mt-1">{phoneError}</p>
             </div>
 
             <div className="items-center justify-between grid-cols-1 grid lg:grid-cols-2 gap-4">
@@ -194,6 +241,7 @@ export default function PersonalDetails(props: any) {
                     <option>Vehicle</option>
                     <option>Student</option>
                     <option>Personal</option>
+                    <option>Business</option>
                     <option>Other</option>
                   </select>
                 </div>
@@ -208,16 +256,21 @@ export default function PersonalDetails(props: any) {
       <div className="bg-white flex-col flex items-center justify-center w-[100vw] py-6 border-t h-[15vh] fixed bottom-0 z-50">
         <button
           onClick={() => {
-            props.userDetails({
-              fullName,
-              email,
-              phoneNumber,
-              ageGroup,
-              multipleLoans: multipleLoans ? "Yes" : "No",
-              employmentStatus,
-              loanType,
-            });
-            props.changeSection(1);
+            if (validateForm()) {
+              // Submit form data
+              console.log("Form submitted successfully!");
+              props.userDetails({
+                fullName,
+                email,
+                phoneNumber,
+                ageGroup,
+                multipleLoans: multipleLoans ? "Yes" : "No",
+                employmentStatus,
+                loanType,
+              });
+
+              props.changeSection(1);
+            }
           }}
           className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
         >

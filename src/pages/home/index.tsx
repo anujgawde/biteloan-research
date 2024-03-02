@@ -1,51 +1,19 @@
 import Marquee from "react-fast-marquee";
-export default function SuccessSection() {
+
+export default function Home() {
   return (
-    <div className=" ">
-      {/* Context Section  */}
-
-      <div className=" flex  justify-center w-full flex-col py-20  items-center h-[100vh]">
-        <div className="lg:w-1/3 space-y-4 lg:space-y-10 lg:pt-10 px-8">
-          <p className="font-libre text text-3xl italic">
-            Unlock Your XXX <br></br>with{" "}
-            <span className="text-primary">BiteLoan</span>
-          </p>
-
-          <div className="space-y-4 font-medium text-medium">
-            <p>Hey there! &#128075;</p>
-
-            <p>
-              We're the team behind BiteLoan, and we're on a mission to
-              transform the way you manage your loans.
-            </p>
-            <p>
-              You've just discovered how much you can save on your loan by
-              prepaying an{" "}
-              <span className="text-primary">additional XXXX.</span>
-            </p>
-
-            <p>But that's just the beginning. With</p>
-            <p>
-              BiteLoan, we're not only showing you potential savings—we're
-              unlocking them for you.
-            </p>
-          </div>
-          <p className="font-libre text-medium lg:text-3xl italic">
-            But what if you could unlock even more savings with even less
-            effort?
-          </p>
-          <div className="flex justify-start w-full lg:w-1/3 ">
-            <img
-              src="/icons/dropdown.gif"
-              className="opacity-20 h-24 lg:-ml-[20%] -ml-[10%] -mt-5"
-            />
-          </div>
+    <>
+      <div className="py-6 bg-white flex justify-between w-full border-b px-6 lg:px-16 items-center fixed top-0 z-50">
+        <div>
+          <img src="/icons/logo.svg" className="h-8 lg:h-12" />
+        </div>
+        <div>
+          <button className="bg-primary lg:px-6 lg:text-base px-3 py-2 text-white rounded-lg text-xs font-sora">
+            Calculate Savings
+          </button>
         </div>
       </div>
-
-      <hr></hr>
-
-      <div className="lg:h-screen flex items-center justify-center flex-col space-y-4 lg:space-y-8 z-0 py-20 px-8">
+      <div className="lg:h-[90vh] flex items-center justify-center flex-col space-y-4 lg:space-y-8 z-0 py-16 px-8">
         <p className="lg:tracking-[0.7rem] tracking-[0.4rem] text-center text-lg lg:text-2xl">
           INTRODUCING
         </p>
@@ -57,7 +25,7 @@ export default function SuccessSection() {
           Transforming how you manage, repay, and think about your loans.
         </p>
       </div>
-      <div className="relative flex justify-center pt-20">
+      <div className="relative flex justify-center pt-20 lg:pt-40">
         <div className="bg-primary py-10 lg:py-20 overflow-hidden">
           <Marquee className="text-4xl lg:text-7xl opacity-30 text-white font-libre italic text-nowrap lg:h-32 h-20 ">
             Track Manage Save Track Manage Save Track Manage Save Track Manage
@@ -76,12 +44,42 @@ export default function SuccessSection() {
         <div className="absolute bottom-0 right-0 lg:right-0 lg:left-0 flex justify-center">
           <img
             src="/icons/app-hand-desktop.png"
-            className="hidden lg:block z-50"
+            className="hidden lg:block z-30"
           />
           <img src="/icons/app-hand-mobile.webp" className="lg:hidden z-50" />
         </div>
       </div>
-      <div className=" flex flex-col justify-center w-full py-20 items-center px-10">
+      <div className="font-sora text-center relative">
+        <div className="ellipse3 h-[20vh] w-[20vw]">sdf</div>
+
+        <div className="py-20 lg:space-y-4">
+          <p className="text-primary text-2xl lg:text-4xl font-semibold">
+            If you prepay ₹1000
+          </p>
+          <p className="text-base lg:text-2xl font-medium">
+            how much can you save in loan interest?
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <img src="/icons/savings-mobile.webp" className=" lg:hidden" />
+          <img
+            src="/icons/savings-desktop.webp"
+            className="lg:h-96 hidden lg:block"
+          />
+        </div>
+
+        <div className="py-10 bg-white border-t  space-y-4 lg:space-y-6">
+          <p className="italic font-libre lg:text-3xl">
+            Saving calculator on biteloan
+          </p>
+          <div>
+            <button className="bg-primary px-6 py-2 text-white rounded-lg text-lg font-sora">
+              Calculate Savings
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[#F8F9F9] flex flex-col justify-center w-full py-20 items-center px-8">
         <div className="w-full lg:w-1/2 space-y-20">
           <div className="space-y-6">
             <p className="text-center text-3xl font-sora">&#128233;</p>
@@ -144,10 +142,9 @@ export default function SuccessSection() {
           </button>
         </div>
       </div>
-
       <div className="py-16 bg-black flex items-center justify-center">
         <img src="/icons/logo-white.svg" className="h-14" />
       </div>
-    </div>
+    </>
   );
 }

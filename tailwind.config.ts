@@ -14,6 +14,7 @@ module.exports = {
         "primary-grey": "#7C7E8C",
         "primary-green": "#00B386",
         "grey-light": "#EAEAEA",
+        "grey-500": "#606060",
         secondary: "#FF7777",
       },
       fontFamily: {

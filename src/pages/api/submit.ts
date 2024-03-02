@@ -9,13 +9,13 @@ type SheetForm = {
   multipleLoans: string;
   employmentStatus: string;
   loanType: string;
-  loanAmount: number;
-  roi: number;
-  tenure: number;
-  emi: number;
-  prepaymentAmount: number;
-  totalInterestPaid: number;
-  totalPayment: number;
+  loanAmount?: number;
+  roi?: number;
+  tenure?: number;
+  emi?: number;
+  prepaymentAmount?: number;
+  totalInterestPaid?: number;
+  totalPayment?: number;
 };
 export async function POST() {
   return NextResponse.json({ message: "method allow" });
