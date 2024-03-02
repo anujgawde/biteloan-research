@@ -84,7 +84,7 @@ export default function Home() {
           <div className="space-y-6">
             <p className="text-center text-3xl font-sora">&#128233;</p>
             <p className="text-center text-2xl lg:text-3xl font-sora">
-              We're inviting you <br></br>Join the BiteLoan Waitlist?
+              We&apos;re inviting you <br></br>Join the BiteLoan Waitlist?
             </p>
           </div>
 

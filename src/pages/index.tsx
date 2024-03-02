@@ -9,7 +9,7 @@ import SuccessSection from "@/components/SuccessSection";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [formSectionId, setFormSectionId] = useState(3);
+  const [formSectionId, setFormSectionId] = useState(0);
   const [userDetails, setUserDetails] = useState<any>();
 
   const setUserDetailsFunc = (data: any) => {

@@ -15,19 +15,19 @@ export default function SuccessSection() {
             <p>Hey there! &#128075;</p>
 
             <p>
-              We're the team behind BiteLoan, and we're on a mission to
-              transform the way you manage your loans.
+              We&apos;re the team behind BiteLoan, and we&apos;re on a mission
+              to transform the way you manage your loans.
             </p>
             <p>
-              You've just discovered how much you can save on your loan by
-              prepaying an{" "}
+              You&apos;ve just discovered how much you can save on your loan by
+              prepaying an
               <span className="text-primary">additional XXXX.</span>
             </p>
 
-            <p>But that's just the beginning. With</p>
+            <p>But that&apos;s just the beginning. With</p>
             <p>
-              BiteLoan, we're not only showing you potential savings—we're
-              unlocking them for you.
+              BiteLoan, we&apos;re not only showing you potential
+              savings—we&apos;re unlocking them for you.
             </p>
           </div>
           <p className="font-libre text-medium lg:text-3xl italic">
@@ -86,7 +86,7 @@ export default function SuccessSection() {
           <div className="space-y-6">
             <p className="text-center text-3xl font-sora">&#128233;</p>
             <p className="text-center text-2xl lg:text-3xl font-sora">
-              We're inviting you <br></br>Join the BiteLoan Waitlist?
+              We&apos;re inviting you <br></br>Join the BiteLoan Waitlist?
             </p>
           </div>
 
