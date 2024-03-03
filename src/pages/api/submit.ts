@@ -16,6 +16,7 @@ type SheetForm = {
   prepaymentAmount?: number;
   totalInterestPaid?: number;
   totalPayment?: number;
+  isWaitlisted: boolean;
 };
 export async function POST() {
   return NextResponse.json({ message: "method allow" });
@@ -54,7 +55,7 @@ export default async function handler(
     // console.log("after sheets", sheets);
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "A1:D1",
+      range: "A1:O1",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [
@@ -73,6 +74,7 @@ export default async function handler(
             body.prepaymentAmount,
             body.totalInterestPaid,
             body.totalPayment,
+            body.isWaitlisted === true ? "Yes" : "No",
           ],
         ],
       },

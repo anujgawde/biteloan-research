@@ -7,14 +7,14 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { RupeeIcon } from "../../public/icons/RupeeIcon";
+import { rupeeFormat } from "@/utils/utils";
+
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function SavingsSection(props: any) {
-  let rupeeFormat = new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  });
-
+  const router = useRouter();
+  const query = router.query;
   let loanAmount = 0;
   let interestRate = 0;
   let emi = 0;
@@ -22,7 +22,7 @@ export default function SavingsSection(props: any) {
   let totalInterestPaidWithoutPP = 0;
   let totalPaymentWithoutPP = 0;
   let roi = 0;
-
+  const [isLoading, setIsLoading] = useState(false);
   // Calculations with prepayment
   const [withPrepayment, setWithPrepayment] = useState({
     tenure: 0,
@@ -91,58 +91,87 @@ export default function SavingsSection(props: any) {
     calculateWithPrepayment();
   }, [prepaymentAmount]);
   return (
-    <div className=" font-noto-sans bg-white">
+    <div className="font-noto-sans bg-white">
       <div className="  space-y-8  pb-40 overflow-y-scroll max-h-[80vh] pt-10 lg:pb-0 px-[8%] lg:px-[16%] ">
         {/* Heading */}
 
         <div className="flex items-center flex-col space-y-4">
-          <img src="/icons/logo.svg" className="pb-8" />
+          <Link href="/">
+            <img src="/icons/logo.svg" className="pb-8" />
+          </Link>
+          {/* <div className="flex justify-between items-center space-x-10">
+            <button
+              onClick={() => {
+                props.changeSection(1);
+              }}
+              className="text-grey-500 font-medium"
+            >
+              Back
+            </button> */}
           <img src="/icons/money-person.png" className="h-12 w-12" />
-          <p className="font-medium text-2xl lg:text-3xl text-center">
-            How much <span className="text-primary">interest</span> you are
-            saving
-          </p>
+          {/* </div> */}
         </div>
 
         {/* Form */}
 
-        <div className="space-y-8  lg:mb-0">
-          <p className="text-4xl lg:text-6xl text-center text-primary font-semibold italic font-libre">
-            {rupeeFormat.format(
-              props.withoutPrepayment.totalInterestPaid -
-                withPrepayment.totalInterestPaid
-            )}
-          </p>
+        <div className="space-y-8 lg:mb-0">
+          <div className="space-y-4">
+            <p className="text-md lg:text-2xl text-center font-sora text-primary">
+              You Save
+            </p>
+            <p className="text-4xl lg:text-6xl text-center text-primary font-semibold italic font-libre">
+              {rupeeFormat.format(
+                props.withoutPrepayment.totalInterestPaid -
+                  withPrepayment.totalInterestPaid
+              )}
+            </p>
+          </div>
+          <div className="space-y-2 flex flex-col items-center">
+            <div className="bg-black bg-opacity-10 rounded-md font-medium py-2 px-8 ">
+              <p className="text-center">
+                by paying just {rupeeFormat.format(prepaymentAmount)} extra on
+                your EMI every month
+              </p>
+            </div>
+            <p className="italic font-medium font-libre text-sm text-center text-primary">
+              + Loan completes{" "}
+              {(props.withoutPrepayment.tenure - withPrepayment.tenure).toFixed(
+                1
+              )}{" "}
+              Years earlier
+            </p>
+          </div>
 
-          <p className="italic font-medium font-libre text-xl lg:text-3xl text-center">
-            + Loan completes{" "}
-            {(props.withoutPrepayment.tenure - withPrepayment.tenure).toFixed(
-              1
-            )}{" "}
-            Years earlier
-          </p>
+          <div className="flex flex-col items-center">
+            <div className="bg-black rounded-xl py-4 px-8 lg:w-1/2 space-y-4">
+              <p className="text-white font-sora font-medium text-center">
+                &#128071; Increase Pre-payment to see the Impact
+              </p>
 
-          <Slider
-            defaultValue={1000}
-            min={100}
-            max={props.withoutPrepayment.emi}
-            step={100}
-            value={prepaymentAmount}
-            onChange={(e) => setPrepaymentAmount(e)}
-          >
-            <SliderTrack bg="#F6F5F7">
-              {" "}
-              {/* Use your desired hex color code */}
-              <SliderFilledTrack bg="#CDB8FF" />{" "}
-              {/* Use your desired hex color code */}
-            </SliderTrack>
-            <SliderThumb bg="#8652FF" boxSize={6}>
-              <Box borderRadius="full" />{" "}
-              {/* Use your desired hex color code */}
-            </SliderThumb>
-          </Slider>
-
-          <div className="flex justify-between lg:justify-center lg:space-x-4 items-center ">
+              <Slider
+                defaultValue={1000}
+                min={100}
+                max={props.withoutPrepayment.emi}
+                step={100}
+                value={prepaymentAmount}
+                onChange={(e) => setPrepaymentAmount(e)}
+              >
+                <SliderTrack bg="#292929" className="bg-opacity-20">
+                  {/* Use your desired hex color code */}
+                  <SliderFilledTrack
+                    bg="#7F7F7f"
+                    className="bg-opacity-40"
+                  />{" "}
+                  {/* Use your desired hex color code */}
+                </SliderTrack>
+                <SliderThumb bg="#FFF" boxSize={6}>
+                  <Box borderRadius="full" />{" "}
+                  {/* Use your desired hex color code */}
+                </SliderThumb>
+              </Slider>
+            </div>
+          </div>
+          {/* <div className="flex justify-between lg:justify-center lg:space-x-4 items-center ">
             <label>Amount Prepaid Monthly</label>
 
             <div className="px-2 py-1 bg-primary bg-opacity-10 rounded-md flex items-center justify-between">
@@ -154,21 +183,41 @@ export default function SavingsSection(props: any) {
                 <p className="text-primary">{prepaymentAmount.toFixed(0)}</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* CTA */}
       <div className="bg-white flex-col flex items-center justify-center w-[100vw] py-6 border-t h-[15vh] fixed bottom-0 z-50">
-        <button
-          onClick={() => props.joinWaitList(prepaymentAmount, withPrepayment)}
-          className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
-        >
-          Save{" "}
-          {rupeeFormat.format(
-            props.withoutPrepayment.totalInterestPaid -
-              withPrepayment.totalInterestPaid
+        <div className="flex items-center space-x-6">
+          <button
+            onClick={() => {
+              props.changeSection(0);
+            }}
+            className="text-grey-500 font-medium"
+          >
+            <img src="/icons/back-icon.svg" className="h-10 w-10" />
+          </button>
+          {!isLoading ? (
+            <button
+              onClick={async () => {
+                setIsLoading(true);
+                await props.joinWaitList(prepaymentAmount, withPrepayment);
+                setIsLoading(false);
+              }}
+              className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+            >
+              {query.k === "h"
+                ? "Join Waitlist"
+                : `Save
+            ${rupeeFormat.format(
+              props.withoutPrepayment.totalInterestPaid -
+                withPrepayment.totalInterestPaid
+            )}`}
+            </button>
+          ) : (
+            <div className="spinner"></div>
           )}
-        </button>
+        </div>
       </div>
 
       {/* Blur */}

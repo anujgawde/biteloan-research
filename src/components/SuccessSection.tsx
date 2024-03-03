@@ -1,14 +1,11 @@
 import { useRouter } from "next/router";
 import Marquee from "react-fast-marquee";
+import { rupeeFormat } from "@/utils/utils";
+import Link from "next/link";
 export default function SuccessSection(props: any) {
   const router = useRouter();
   const queryName = router.query.k;
-  let rupeeFormat = new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  });
-  console.log(props);
+
   return queryName !== "h" ? (
     <div className=" ">
       {/* Context Section  */}
@@ -66,7 +63,9 @@ export default function SuccessSection(props: any) {
           INTRODUCING
         </p>
         <div>
-          <img src="/icons/logo.svg" className="lg:h-40 h-20" />
+          <Link href="/">
+            <img src="/icons/logo.svg" className="lg:h-40 h-20" />
+          </Link>
         </div>
 
         <p className="lg:text-2xl text-lg text-center font-libre italic">
@@ -97,7 +96,116 @@ export default function SuccessSection(props: any) {
           <img src="/icons/app-hand-mobile.webp" className="lg:hidden z-50" />
         </div>
       </div>
-      <div className=" flex flex-col justify-center w-full py-20 items-center px-10">
+      <div className="bg-black w-full flex flex-col lg:text-lg text-sm items-center py-10 font-sora text-center pb-32">
+        <p className="text-5xl font-bold text-red-600 ">&#x2049;&#xFE0F;</p>
+
+        <div className="space-y-4 py-8 px-8">
+          <p className="lg:text-4xl text-2xl text-white ">
+            Why you need Biteloan?
+          </p>
+
+          <p className="text-grey-400 ">
+            Navigating the world of loans can often feel like trying to find
+            your way through a maze without a map.
+            <span className="block">
+              Here&apos;s what you&apos;re up against:
+            </span>
+          </p>
+        </div>
+        <div className="grid lg:grid-cols-2 lg:px-56 px-8 gap-x-10 gap-y-10">
+          <div className=" flex flex-col justify-start items-center">
+            <img
+              src="/icons/disjointed-communication.webp"
+              className="object-cover w-full pb-6"
+            />
+            <p className="font-libre italic text-primary-faded text-3xl pb-2">
+              Disjointed Communication
+            </p>
+            <p className="text-grey-500">
+              Tired of piecing together your loan status from countless emails
+              and messages?
+            </p>
+          </div>
+          <div className=" flex flex-col justify-start items-center">
+            <img
+              src="/icons/prepayment-puzzles.webp"
+              className="object-cover w-full pb-6"
+            />
+            <p className="font-libre italic text-primary-faded text-3xl pb-2">
+              Prepayment puzzles
+            </p>
+            <p className="text-grey-500">
+              Prepayment are a hassle due to bank&apos;s unnecessary policies,
+              such as branch visits, prepayment caps, and document submissions?
+            </p>
+          </div>
+          <div className=" flex flex-col justify-start items-center">
+            <img
+              src="/icons/multiple-loans.webp"
+              className="object-cover w-full pb-6"
+            />
+            <p className="font-libre italic text-primary-faded text-3xl pb-2">
+              Multiple Loans
+            </p>
+            <p className="text-grey-500">
+              Struggling several loans at once can feel like a balancing act
+              without a safety net.
+            </p>
+          </div>
+          <div className=" flex flex-col justify-start items-center">
+            <img
+              src="/icons/interest-rate.webp"
+              className="object-cover w-full pb-6"
+            />
+            <p className="font-libre italic text-primary-faded text-3xl pb-2">
+              Interest Rate Confusion
+            </p>
+            <p className="text-grey-500">
+              Floating interest rates can leave your repayment schedule in flux,
+              making it challenging to plan your finances.
+            </p>
+          </div>
+          <div className=" flex flex-col justify-start items-center">
+            <img
+              src="/icons/unclear-communication.webp"
+              className="object-cover w-full pb-6"
+            />
+            <p className="font-libre italic text-primary-faded text-3xl pb-2">
+              Unclear Communication
+            </p>
+            <p className="text-grey-500">
+              Feeling left in the dark by your bank&apos;s communication (or
+              lack thereof)?
+            </p>
+          </div>
+          <div className=" flex flex-col justify-start items-center">
+            <img
+              src="/icons/financial-decisions.webp"
+              className="object-cover w-full pb-6"
+            />
+            <p className="font-libre italic text-primary-faded text-3xl pb-2">
+              Financial Decisions
+            </p>
+            <p className="text-grey-500">
+              While securing loans has become easier, managing them effectively
+              is still a hurdle for many.
+            </p>
+          </div>
+        </div>
+        <div className="bg-white bg-opacity-[7%] my-14 px-4 py-4 mx-4 rounded-2xl">
+          <p className="text-white lg:text-md text-xs">
+            Our goal is to address these challenges head-on, providing you with
+            the tools and knowledge to take control of your loan management
+            journey
+          </p>
+        </div>
+        <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
+          <button className="text-black rounded-lg bg-primary-faded px-6 py-2 text-lg font-sora">
+            Join Waitlist
+          </button>
+        </Link>
+      </div>
+      <div className="bg-[#F8F9F9] flex flex-col justify-center w-full py-20 items-center px-8">
         <div className="w-full lg:w-1/2 space-y-20">
           <div className="space-y-6">
             <p className="text-center text-3xl font-sora">&#128233;</p>
@@ -106,7 +214,7 @@ export default function SuccessSection(props: any) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 ">
             <div className="space-y-2">
               <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
                 <img src="/icons/magnet-icon.svg" />
@@ -154,15 +262,80 @@ export default function SuccessSection(props: any) {
               </p>
             </div>
           </div>
-
-          <button className="bg-primary px-8 py-2 text-white rounded-lg mx-auto  hidden lg:block font-sora">
-            Join Waitlist
-          </button>
         </div>
+        <Link
+          className="bg-primary px-8 py-2 text-white rounded-lg  font-sora text-center my-12"
+          href={{ pathname: "/calculator", query: { k: "h" } }}
+        >
+          <button>Join Waitlist</button>
+        </Link>
       </div>
+      <div className="bg-black px-8 lg:px-14 py-12 lg:py-6">
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center w-full ">
+          <Link href="/">
+            <img src="/icons/logo-white.svg" className="h-14" />
+          </Link>
+          <p className="text-[#434343] text-center lg:text-left font-libre italic lg:text-xl mb-8 mt-2 lg:hidden">
+            Track Manage Save Loans
+          </p>
+          <Link
+            className="bg-primary px-8 py-2  text-white rounded-lg font-sora text-center "
+            href={{
+              pathname: "https://wa.me/9892320184",
+            }}
+          >
+            <button className="">Contact Us</button>
+          </Link>
+        </div>
+        <p className="text-[#434343] hidden lg:block text-center lg:text-left font-libre italic lg:text-xl mb-8 mt-2 lg:">
+          Track Manage Save Loans
+        </p>
 
-      <div className="py-16 bg-black flex items-center justify-center">
-        <img src="/icons/logo-white.svg" className="h-14" />
+        <div className="bg-opacity-15 bg-white w-full h-[0.050rem] my-6"></div>
+
+        <div className="space-x-4  items-center justify-center lg:hidden flex">
+          <Link href="/">
+            <button>
+              <img src="/icons/social-2.svg" />
+            </button>
+          </Link>
+          <Link href="/">
+            <button>
+              <img src="/icons/social-1.svg" />
+            </button>
+          </Link>
+          <Link href="/">
+            <button>
+              <img src="/icons/social.svg" />
+            </button>
+          </Link>
+        </div>
+        <p className="text-grey-500 text-sm text-center lg:hidden">
+          ©2024 Biteloan All Rights Reserved
+        </p>
+        <div className="flex justify-between items-center">
+          <p className="text-grey-500 text-sm text-center hidden lg:block">
+            ©2024 Biteloan All Rights Reserved
+          </p>
+
+          <div className="space-x-4  items-center hidden lg:flex">
+            <Link href="/">
+              <button>
+                <img src="/icons/social-2.svg" />
+              </button>
+            </Link>
+            <Link href="/">
+              <button>
+                <img src="/icons/social-1.svg" />
+              </button>
+            </Link>
+            <Link href="/">
+              <button>
+                <img src="/icons/social.svg" />
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   ) : (
@@ -170,7 +343,9 @@ export default function SuccessSection(props: any) {
       <div className=" flex-col flex items-center lg:justify-between lg:items-start py-10 lg:w-[60%] text-center lg:text-start lg:h-screen">
         <div className="space-y-8 flex-col flex lg:block items-center">
           <div className="px-10 lg:hidden lg:px-20">
-            <img className="" src="/icons/logo.svg" />
+            <Link href="/">
+              <img className="" src="/icons/logo.svg" />
+            </Link>
           </div>
           <div className=" lg:px-0 lg:mx-10 lg:h-56 lg:w-56 h-40 w-40">
             <img src="/icons/success-person.png" className=" h-full w-full" />
@@ -184,32 +359,36 @@ export default function SuccessSection(props: any) {
                 for Showing Interest.
               </p>
             </div>
-            <p className="text-[#8D8F9B] font-sora text-sm font-normal lg:px-0 px-8 lg:text-2xl">
+            <p className="text-[#8D8F9B] font-sora text-sm font-normal lg:px-0 px-8 lg:text-xl">
               Our Team will get back to you as soon as we are ready to take you
               in.
             </p>
           </div>
 
           {/* <div className="bg-white flex-col flex items-center justify-start w-[100vw] "> */}
-          <button className="bg-primary px-8 py-2 text-white rounded-lg mx-20  hidden lg:block font-sora">
+          {/* <button className="bg-primary px-8 py-2 text-white rounded-lg mx-20  hidden lg:block font-sora">
             Join Waitlist
-          </button>
+          </button> */}
           {/* </div> */}
         </div>
 
         <div className="px-10 lg:px-20 hidden lg:block">
-          <img src="/icons/logo.svg" />
+          <Link href="/">
+            <img src="/icons/logo.svg" />
+          </Link>
         </div>
       </div>
-      <div className="bg-primary w-full lg:w-[40%] lg:pt-10 flex flex-col justify-between lg:items-center lg:min-h-screen">
+      <div className="bg-primary w-full lg:w-[40%] lg:pt-10 flex flex-col justify-between lg:items-center lg:min-h-screen relative">
         <div>
-          <img
-            src="/icons/logo-white.svg"
-            className="hidden lg:block lg:h-14 "
-          />
+          <Link href="/">
+            <img
+              src="/icons/logo-white.svg"
+              className="hidden lg:block lg:h-14 "
+            />
+          </Link>
         </div>
 
-        <div className="lg:absolute right-0 bottom-0">
+        <div className="flex justify-end w-full">
           <img
             src="/icons/success-app-mobile.png"
             className="lg:hidden pt-10"

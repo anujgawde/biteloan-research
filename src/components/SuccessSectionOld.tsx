@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function SuccessSection() {
   return (
     <>
@@ -5,7 +7,9 @@ export default function SuccessSection() {
         <div className=" flex-col flex items-center lg:justify-between lg:items-start py-10 lg:w-[60%] text-center lg:text-start lg:h-screen">
           <div className="space-y-8 flex-col flex lg:block items-center">
             <div className="px-10 lg:hidden lg:px-20">
-              <img className="" src="/icons/logo.svg" />
+              <Link href="/">
+                <img className="" src="/icons/logo.svg" />
+              </Link>
             </div>
             <div className=" lg:px-0 lg:mx-10 lg:h-56 lg:w-56 h-40 w-40">
               <img src="/icons/success-person.png" className=" h-full w-full" />
@@ -33,15 +37,19 @@ export default function SuccessSection() {
           </div>
 
           <div className="px-10 lg:px-20 hidden lg:block">
-            <img src="/icons/logo.svg" />
+            <Link href="/">
+              <img src="/icons/logo.svg" />
+            </Link>
           </div>
         </div>
         <div className="bg-primary w-full lg:w-[40%] lg:pt-10 flex flex-col justify-between lg:items-center lg:min-h-screen">
           <div>
-            <img
-              src="/icons/logo-white.svg"
-              className="hidden lg:block lg:h-14 "
-            />
+            <Link href="/">
+              <img
+                src="/icons/logo-white.svg"
+                className="hidden lg:block lg:h-14 "
+              />
+            </Link>
           </div>
 
           <div className="lg:absolute right-0 bottom-0">

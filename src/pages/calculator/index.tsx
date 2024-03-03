@@ -5,11 +5,13 @@ import LoanSection from "@/components/LoanSection";
 import PersonalDetails from "@/components/PersonalDetails";
 import SavingsSection from "@/components/SavingsSection";
 import SuccessSection from "@/components/SuccessSection";
+import { useRouter } from "next/router";
 
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [formSectionId, setFormSectionId] = useState(0);
+  const router = useRouter();
+  const [formSectionId, setFormSectionId] = useState(3);
   const [prepaymentAmount, setPrepaymentAmount] = useState(0);
   const [userDetails, setUserDetails] = useState<any>();
 
@@ -19,10 +21,12 @@ export default function Home() {
 
   // Setting Without Prepayment Loan Details
   const [withoutPrepayment, setWithoutPrepayment] = useState({
-    tenure: 0,
+    tenure: 15,
     totalInterestPaid: 0,
     totalPayment: 0,
     emi: 0,
+    loanAmount: 7500000,
+    roi: 9,
   });
   const [withPrepayment, setWithPrepayment] = useState({
     tenure: 0,
@@ -53,6 +57,7 @@ export default function Home() {
       prepaymentAmount,
       ...withoutPrepayment,
       ...userDetails,
+      isWaitlisted: true,
     };
 
     const response = await fetch("/api/submit", {
@@ -91,14 +96,17 @@ export default function Home() {
         <PersonalDetails
           changeSection={(id: number) => changeSection(id)}
           userDetails={setUserDetailsFunc}
+          personalData={userDetails}
         />
       ) : formSectionId === 1 ? (
         <LoanSection
           changeSection={(id: number) => changeSection(id)}
           updateWithoutPrepayment={updateWithoutPrepayment}
+          loanData={withoutPrepayment}
         />
       ) : formSectionId === 2 ? (
         <SavingsSection
+          changeSection={(id: number) => changeSection(id)}
           withoutPrepayment={withoutPrepayment}
           joinWaitList={joinWaitListFunc}
         />

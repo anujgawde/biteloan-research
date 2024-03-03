@@ -5,26 +5,34 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  SliderMark,
   Box,
 } from "@chakra-ui/react";
+import { rupeeFormat } from "@/utils/utils";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 export default function LoanSection(props: any) {
+  const router = useRouter();
+  const loanDetails = props.loanData
+    ? props.loanData
+    : {
+        emi: 0,
+        loanAmount: 7500000,
+        roi: 9,
+        tenure: 15,
+        totalInterestPaid: 0,
+        totalPayment: 0,
+      };
+
   // Loan Values
-  const [roi, setRoi] = useState(9);
-  const [loanAmount, setLoanAmount] = useState(7500000);
-  const [tenure, setTenure] = useState(15);
+  const [roi, setRoi] = useState(loanDetails.roi);
+  const [loanAmount, setLoanAmount] = useState(loanDetails.loanAmount);
+  const [tenure, setTenure] = useState(loanDetails.tenure);
 
-  const [totalInterestPaid, setTotalInterestPaid] = useState(0);
-  const [totalPayment, setTotalPayment] = useState(0);
-  const [emi, setEmi] = useState(0);
-
-  // const [withoutPrepayment, setWithoutPrepayment] = useState({
-  //   tenure: 0,
-  //   totalInterestPaid: 0,
-  //   totalPayment: 0,
-  //   emi: 0,
-  //   roi,
-  // });
+  const [totalInterestPaid, setTotalInterestPaid] = useState(
+    loanDetails.totalInterestPaid
+  );
+  const [totalPayment, setTotalPayment] = useState(loanDetails.totalPayment);
+  const [emi, setEmi] = useState(loanDetails.emi);
 
   function calculateEMI(
     loanAmount: number,
@@ -41,66 +49,11 @@ export default function LoanSection(props: any) {
     return emi;
   }
 
-  // function calculateWithPrepayment(
-  //   loanAmount: number,
-  //   interestRate: number,
-  //   tenure: number,
-  //   prepayment: number
-  // ) {
-  //   let emi = calculateEMI(loanAmount, interestRate, tenure);
-  //   let remainingBalance = loanAmount;
-  //   let totalInterestPaid = 0;
-  //   let month = 0;
-
-  //   while (remainingBalance > 0) {
-  //     let interestForTheMonth = (remainingBalance * interestRate) / 12 / 100;
-  //     let principalForTheMonth = emi - interestForTheMonth;
-  //     remainingBalance -= principalForTheMonth;
-
-  //     if (remainingBalance > 0 && prepayment > 0) {
-  //       remainingBalance -= prepayment;
-  //       if (remainingBalance < 0) {
-  //         // Adjust the last prepayment to not overshoot the remaining balance
-  //         prepayment += remainingBalance;
-  //         remainingBalance = 0;
-  //       }
-  //       totalInterestPaid +=
-  //         interestForTheMonth + (prepayment * interestRate) / 12 / 100;
-  //     } else {
-  //       totalInterestPaid += interestForTheMonth;
-  //     }
-
-  //     month++;
-  //     if (month >= tenure * 12) {
-  //       // Prevent infinite loop in case of calculation errors
-  //       break;
-  //     }
-  //   }
-
-  //   const newTenureYears = month / 12;
-  //   const totalPayment = loanAmount + totalInterestPaid;
-
-  //   // setWithPrepayment({
-  //   //   tenure: newTenureYears,
-  //   //   totalPayment,
-  //   //   totalInterestPaid,
-  //   // });
-  // }
-
   function calculateLoan() {
     const loanAmountLocal = parseFloat(loanAmount.toString());
     const interestRate = parseFloat(roi.toString());
     const tenureLocal = parseFloat(tenure.toString());
-    // const prepaymentLocal = parseFloat(prepayment.toString()) || 0;
 
-    // if (prepaymentLocal > 0) {
-    //   calculateWithPrepayment(
-    //     loanAmountLocal,
-    //     interestRate,
-    //     tenureLocal,
-    //     prepaymentLocal
-    //   );
-    // }
     const emiLocal = calculateEMI(loanAmountLocal, interestRate, tenureLocal);
     const totalPaymentLocal = emiLocal * tenureLocal * 12;
     const totalInterestLocal = totalPaymentLocal - loanAmountLocal;
@@ -108,13 +61,6 @@ export default function LoanSection(props: any) {
     setTotalInterestPaid(totalInterestLocal);
     setTotalPayment(totalPaymentLocal);
     setEmi(emiLocal);
-    // setWithoutPrepayment({
-    //   totalPayment,
-    //   totalInterestPaid: totalInterest,
-    //   tenure: tenureLocal,
-    //   emi,
-    //   roi,
-    // });
 
     props.updateWithoutPrepayment({
       totalPayment: totalPaymentLocal,
@@ -129,20 +75,19 @@ export default function LoanSection(props: any) {
   useEffect(() => {
     calculateLoan();
   }, [tenure, loanAmount, roi]);
-  // Ensure you have a button with an onclick event to call calculateLoan in your HTML
-  let rupeeFormat = new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  });
+
   return (
     <div className=" font-noto-sans bg-white ">
       <div className=" h-[80vh] lg:h-[85vh] space-y-8 flex-1 overflow-y-scroll max-h-[80vh] lg:max-h-[85vh] py-10">
         {/* Heading */}
 
         <div className="flex items-center flex-col space-y-4">
-          <img src="/icons/logo.svg" className="pb-8" />
+          <Link href="/">
+            <img src="/icons/logo.svg" className="pb-8" />
+          </Link>
+
           <img src="/icons/money.png" className="h-12 w-12" />
+
           <p className="font-medium text-xl lg:text-3xl text-center px-10">
             Please tell us about your loan
           </p>
@@ -152,15 +97,23 @@ export default function LoanSection(props: any) {
         <div className="flex justify-center w-full">
           <div className="rounded-2xl bg-white border mb-16 lg:mb-0 border-grey-light w-[90%] lg:w-[60%] z-50 py-8 lg:py-16 px-6  lg:flex justify-center  text-primary-black text-lg ">
             <div className="flex flex-col justify-between space-y-4 font-medium lg:w-[45%]">
-              <div className="space-y-8">
-                <div className="flex justify-between items-center lg:space-x-8">
-                  <label>Loan Amount</label>
+              <div className="space-y-8 w-full">
+                <div className="flex justify-between items-center lg:space-x-8 w-full">
+                  <label className="flex-1">Loan Amount</label>
 
                   <div className="px-2 py-1 bg-primary bg-opacity-10 rounded-md flex items-center justify-between w-32">
                     <div className="h-4 w-4">
                       <RupeeIcon stroke="#8652FF" classNames="h-4 w-4" />
                     </div>
 
+                    {/* <input
+                      value={loanAmount}
+                      min={100000}
+                      max={10000000}
+                      type="number"
+                      onChange={(e) => setLoanAmount(parseInt(e.target.value))}
+                      className="text-primary  border-none bg-transparent flex-1 text-right w-1 lg:w-12 p-1"
+                    /> */}
                     <div>
                       <p className="text-primary">{loanAmount}</p>
                     </div>
@@ -171,7 +124,7 @@ export default function LoanSection(props: any) {
                   defaultValue={100000}
                   min={100000}
                   max={10000000}
-                  step={10000}
+                  step={1000}
                   value={loanAmount}
                   onChange={(e) => setLoanAmount(e)}
                 >
@@ -215,13 +168,10 @@ export default function LoanSection(props: any) {
                 >
                   <SliderTrack bg="#F6F5F7">
                     {" "}
-                    {/* Use your desired hex color code */}
                     <SliderFilledTrack bg="#CDB8FF" />{" "}
-                    {/* Use your desired hex color code */}
                   </SliderTrack>
                   <SliderThumb bg="#8652FF" boxSize={6}>
                     <Box borderRadius="full" />{" "}
-                    {/* Use your desired hex color code */}
                   </SliderThumb>
                 </Slider>
               </div>
@@ -296,15 +246,26 @@ export default function LoanSection(props: any) {
             {rupeeFormat.format(totalInterestPaid)} ?
           </span>
         </p>
-        <button
-          onClick={() => {
-            // props.setLoanDetails({ loanAmount, interestRate: roi });
-            props.changeSection(2);
-          }}
-          className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
-        >
-          Calculate Savings
-        </button>
+
+        <div className="flex items-center space-x-6">
+          <button
+            onClick={() => {
+              props.changeSection(0);
+            }}
+            className="text-grey-500 font-medium"
+          >
+            <img src="/icons/back-icon.svg" className="h-10 w-10" />
+          </button>
+          <button
+            onClick={() => {
+              // props.setLoanDetails({ loanAmount, interestRate: roi });
+              props.changeSection(2);
+            }}
+            className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+          >
+            Calculate Savings
+          </button>
+        </div>
       </div>
 
       {/* Blur */}

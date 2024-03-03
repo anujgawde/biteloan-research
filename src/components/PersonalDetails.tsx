@@ -1,77 +1,38 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { bankProviders } from "@/utils/utils";
+
+import Link from "next/link";
 
 export default function PersonalDetails(props: any) {
-  const bankRange = [
-    "Bank of Baroda",
-    "Bank of India",
-    "Bank of Maharashtra",
-    "Canara Bank",
-    "Central Bank of India",
-    "Indian Bank",
-    "Indian Overseas Bank",
-    "Punjab & Sind Bank",
-    "Punjab National Bank",
-    "State Bank of India",
-    "UCO Bank",
-    "Union Bank of India",
-    "Axis Bank Ltd.",
-    "Bandhan Bank Ltd.",
-    "CSB Bank Ltd.",
-    "City Union Bank Ltd.",
-    "DCB Bank Ltd.",
-    "Dhanlaxmi Bank Ltd.",
-    "Federal Bank Ltd.",
-    "HDFC Bank Ltd",
-    "ICICI Bank Ltd.",
-    "Induslnd Bank Ltd",
-    "IDFC First Bank Ltd.",
-    "Jammu & Kashmir Bank Ltd.",
-    "Karnataka Bank Ltd.",
-    "Karur Vysya Bank Ltd.",
-    "Kotak Mahindra Bank Ltd",
-    "Nainital Bank Ltd.",
-    "RBL Bank Ltd.",
-    "South Indian Bank Ltd.",
-    "Tamilnad Mercantile Bank Ltd.",
-    "YES Bank Ltd.",
-    "IDBI Bank Ltd.",
-    "Others",
-  ];
-  const router = useRouter();
+  const personalDetails = props.personalData
+    ? props.personalData
+    : {
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        ageGroup: "18 - 25",
+        bankProvider: "Axis Bank Ltd.",
+        loanType: "Housing",
+      };
   // user variables:
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [ageGroup, setAgeGroup] = useState("18 - 25");
-  const [bankProvider, setBankProvider] = useState("Bank of Baroda");
-  const [employmentStatus, setEmploymentStatus] = useState("Employed");
-  const [loanType, setLoantype] = useState("Housing");
+  const [fullName, setFullName] = useState(personalDetails.fullName);
+  const [email, setEmail] = useState(personalDetails.email);
+  const [phoneNumber, setPhoneNumber] = useState(personalDetails.phoneNumber);
+  const [ageGroup, setAgeGroup] = useState(personalDetails.ageGroup);
+  const [bankProvider, setBankProvider] = useState(
+    personalDetails.bankProvider
+  );
+  const [employmentStatus, setEmploymentStatus] = useState(
+    personalDetails.employmentStatus
+  );
+  const [loanType, setLoantype] = useState(personalDetails.loanType);
 
   const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^[6-9]\d{9}$/; // Assuming Indian phone numbers start with 6, 7, 8, or 9
-
-  const submitHandler = async (e: any) => {
-    e.preventDefault();
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: "anuj",
-        email: "axg.devv@gmail.com",
-        phone: "992099020022",
-        message: "hello brother",
-      }),
-    });
-    const content = await response.json();
-  };
+  const phoneRegex = /^(?:\+?91|0)?[ -]?\d{3}[ -]?\d{4}[ -]?\d{3}$/;
 
   const validateForm = () => {
     let isValid = true;
@@ -112,8 +73,11 @@ export default function PersonalDetails(props: any) {
         {/* Heading */}
 
         <div className="flex items-center flex-col space-y-4">
-          <img src="/icons/logo.svg" className="pb-8" />
+          <Link href="/">
+            <img src="/icons/logo.svg" className="pb-8" />
+          </Link>
           <img src="/icons/person.png" className="h-12 w-12" />
+
           <p className="font-medium text-xl lg:text-3xl">
             Please tell us about you
           </p>
@@ -252,7 +216,7 @@ export default function PersonalDetails(props: any) {
                     value={bankProvider}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
-                    {bankRange.map((e, index) => (
+                    {bankProviders.map((e, index) => (
                       <option key={index}>{e}</option>
                     ))}
                   </select>
@@ -300,7 +264,7 @@ export default function PersonalDetails(props: any) {
                   >
                     <option>Housing</option>
                     <option>Vehicle</option>
-                    <option>Student</option>
+                    <option>Education</option>
                     <option>Personal</option>
                     <option>Business</option>
                     <option>Other</option>
