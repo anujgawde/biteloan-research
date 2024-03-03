@@ -3,7 +3,7 @@
 import React from "react";
 import Head from "next/head";
 import { GoogleAnalytics } from "@next/third-parties/google";
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC = ({ children }: any) => {
   return (
     <>
       <Head>

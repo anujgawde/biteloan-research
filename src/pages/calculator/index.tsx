@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  const [formSectionId, setFormSectionId] = useState(3);
+  const [formSectionId, setFormSectionId] = useState(0);
   const [prepaymentAmount, setPrepaymentAmount] = useState(0);
   const [userDetails, setUserDetails] = useState<any>();
 
