@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -5,6 +6,10 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="shortcut icon" href="/favicon.svg" />
+        <script>
+          {/* Paste your Google Tag Manager code snippet here */}
+          <GoogleAnalytics gaId={process.env.GAID!} />
+        </script>
       </Head>
       <body>
         <Main />
