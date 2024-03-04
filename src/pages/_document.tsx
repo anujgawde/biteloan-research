@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -9,6 +9,7 @@ export default function Document() {
         <script>
           {/* Paste your Google Tag Manager code snippet here */}
           <GoogleAnalytics gaId={process.env.GAID!} />
+          <GoogleTagManager gtmId={process.env.GAID!} />
         </script>
       </Head>
       <body>
