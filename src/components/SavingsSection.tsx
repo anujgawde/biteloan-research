@@ -191,7 +191,7 @@ export default function SavingsSection(props: any) {
         <div className="flex items-center space-x-6">
           <button
             onClick={() => {
-              props.changeSection(0);
+              props.changeSection(1);
             }}
             className="text-grey-500 font-medium"
           >

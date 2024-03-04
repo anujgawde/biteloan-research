@@ -1,16 +1,27 @@
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
         <link rel="shortcut icon" href="/favicon.svg" />
-        <script>
-          {/* Paste your Google Tag Manager code snippet here */}
-          <GoogleAnalytics gaId={process.env.GAID!} />
-          <GoogleTagManager gtmId={process.env.GAID!} />
-        </script>
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
+        />
+
+        <Script id="ga-script" strategy="lazyOnload">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${process.env.GOOGLE_ANALYTICS}', {
+      page_path: window.location.pathname,
+    });
+        `}
+        </Script>
       </Head>
       <body>
         <Main />

@@ -306,7 +306,7 @@ export default function Home() {
           </Link>
         </div>
         <Link
-          className="bg-primary px-8 py-2 text-white rounded-lg  font-sora text-center my-12"
+          className="bg-primary px-8 py-2 text-white rounded-lg  font-sora text-center my-12 lg:hidden"
           href={{ pathname: "/calculator", query: { k: "h" } }}
         >
           <button>Join Waitlist</button>
