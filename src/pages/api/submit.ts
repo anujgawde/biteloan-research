@@ -17,6 +17,8 @@ type SheetForm = {
   totalInterestPaid?: number;
   totalPayment?: number;
   isWaitlisted: boolean;
+  prepaymentAwareness: boolean;
+  prepaymentAction: boolean;
 };
 export async function POST() {
   return NextResponse.json({ message: "method allow" });
@@ -75,6 +77,8 @@ export default async function handler(
             body.totalInterestPaid,
             body.totalPayment,
             body.isWaitlisted === true ? "Yes" : "No",
+            body.prepaymentAwareness === true ? "Yes" : "No",
+            body.prepaymentAction === true ? "Yes" : "No",
           ],
         ],
       },

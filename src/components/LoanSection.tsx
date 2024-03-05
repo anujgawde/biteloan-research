@@ -83,10 +83,10 @@ export default function LoanSection(props: any) {
 
         <div className="flex items-center flex-col space-y-4">
           <Link href="/">
-            <img src="/icons/logo.svg" className="pb-8" />
+            <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
           </Link>
 
-          <img src="/icons/money.png" className="h-12 w-12" />
+          <img alt="money-icon" src="/icons/money.png" className="h-12 w-12" />
 
           <p className="font-medium text-xl lg:text-3xl text-center px-10">
             Please tell us about your loan
@@ -145,9 +145,7 @@ export default function LoanSection(props: any) {
                   <label>Rate of Interest</label>
 
                   <div className="px-2 py-1 bg-primary bg-opacity-10 rounded-md flex items-center justify-between w-32">
-                    <div>
-                      {/* <img src="/icons/rupee-icon.svg" className="h-4 w-4" /> */}
-                    </div>
+                    <div></div>
 
                     <div>
                       <p className="text-primary">
@@ -249,12 +247,18 @@ export default function LoanSection(props: any) {
 
         <div className="flex items-center space-x-6">
           <button
+            name="Prev to Personal"
             onClick={() => {
               props.changeSection(0);
             }}
             className="text-grey-500 font-medium"
+            id="prev-to-personal-section"
           >
-            <img src="/icons/back-icon.svg" className="h-10 w-10" />
+            <img
+              alt="back-icon"
+              src="/icons/back-icon.svg"
+              className="h-10 w-10"
+            />
           </button>
           <button
             onClick={() => {
@@ -262,6 +266,8 @@ export default function LoanSection(props: any) {
               props.changeSection(2);
             }}
             className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+            id="next-to-savings-section"
+            name="Next to Savings"
           >
             Calculate Savings
           </button>

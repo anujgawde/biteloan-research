@@ -49,6 +49,7 @@ export default function SuccessSection(props: any) {
           </p>
           <div className="flex justify-start w-full lg:w-1/3 ">
             <img
+              alt="see-below"
               src="/icons/dropdown.gif"
               className="opacity-20 h-24 lg:-ml-[20%] -ml-[10%] -mt-5"
             />
@@ -64,7 +65,11 @@ export default function SuccessSection(props: any) {
         </p>
         <div>
           <Link href="/">
-            <img src="/icons/logo.svg" className="lg:h-40 h-20" />
+            <img
+              alt="biteloan-logo"
+              src="/icons/logo.svg"
+              className="lg:h-40 h-20"
+            />
           </Link>
         </div>
 
@@ -90,10 +95,15 @@ export default function SuccessSection(props: any) {
         </div>
         <div className="absolute bottom-0 right-0 lg:right-0 lg:left-0 flex justify-center">
           <img
+            alt="user-hand"
             src="/icons/app-hand-desktop.png"
             className="hidden lg:block z-50"
           />
-          <img src="/icons/app-hand-mobile.webp" className="lg:hidden z-50" />
+          <img
+            alt="user-hand"
+            src="/icons/app-hand-mobile.webp"
+            className="lg:hidden z-50"
+          />
         </div>
       </div>
       <div className="bg-black w-full flex flex-col lg:text-lg text-sm items-center py-10 font-sora text-center pb-32">
@@ -115,6 +125,7 @@ export default function SuccessSection(props: any) {
         <div className="grid lg:grid-cols-2 lg:px-56 px-8 gap-x-10 gap-y-10">
           <div className=" flex flex-col justify-start items-center">
             <img
+              alt="disjointed-communication"
               src="/icons/disjointed-communication.webp"
               className="object-cover w-full pb-6"
             />
@@ -128,6 +139,7 @@ export default function SuccessSection(props: any) {
           </div>
           <div className=" flex flex-col justify-start items-center">
             <img
+              alt="prepayment-puzzles"
               src="/icons/prepayment-puzzles.webp"
               className="object-cover w-full pb-6"
             />
@@ -141,6 +153,7 @@ export default function SuccessSection(props: any) {
           </div>
           <div className=" flex flex-col justify-start items-center">
             <img
+              alt="multiple-loans"
               src="/icons/multiple-loans.webp"
               className="object-cover w-full pb-6"
             />
@@ -154,6 +167,7 @@ export default function SuccessSection(props: any) {
           </div>
           <div className=" flex flex-col justify-start items-center">
             <img
+              alt="interest-rate"
               src="/icons/interest-rate.webp"
               className="object-cover w-full pb-6"
             />
@@ -167,6 +181,7 @@ export default function SuccessSection(props: any) {
           </div>
           <div className=" flex flex-col justify-start items-center">
             <img
+              alt="unclear-communication"
               src="/icons/unclear-communication.webp"
               className="object-cover w-full pb-6"
             />
@@ -180,6 +195,7 @@ export default function SuccessSection(props: any) {
           </div>
           <div className=" flex flex-col justify-start items-center">
             <img
+              alt="financial-decisions"
               src="/icons/financial-decisions.webp"
               className="object-cover w-full pb-6"
             />
@@ -200,7 +216,11 @@ export default function SuccessSection(props: any) {
           </p>
         </div>
         <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
-          <button className="text-black rounded-lg bg-primary-faded px-6 py-2 text-lg font-sora">
+          <button
+            name="Why Biteloan Join Waitlist Success"
+            id="why-biteloan-join-waitlist-success"
+            className="text-black rounded-lg bg-primary-faded px-6 py-2 text-lg font-sora"
+          >
             Join Waitlist
           </button>
         </Link>
@@ -217,7 +237,7 @@ export default function SuccessSection(props: any) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 ">
             <div className="space-y-2">
               <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img src="/icons/magnet-icon.svg" />
+                <img alt="magnet-icon" src="/icons/magnet-icon.svg" />
                 <p className="text-primary font-libre italic text-2xl">
                   Exclusive Early Access
                 </p>
@@ -229,7 +249,7 @@ export default function SuccessSection(props: any) {
             </div>
             <div className="space-y-2">
               <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img src="/icons/key-icon.svg" />
+                <img alt="key-icon" src="/icons/key-icon.svg" />
                 <p className="text-primary font-libre italic text-2xl">
                   Unlock Savings
                 </p>
@@ -240,7 +260,7 @@ export default function SuccessSection(props: any) {
             </div>
             <div className="space-y-2">
               <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img src="/icons/star-icon.svg" />
+                <img alt="star-icon" src="/icons/star-icon.svg" />
                 <p className="text-primary font-libre italic text-2xl">
                   Track Loans
                 </p>
@@ -251,7 +271,7 @@ export default function SuccessSection(props: any) {
             </div>
             <div className="space-y-2">
               <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img src="/icons/add-icon.svg" />
+                <img alt="add-icon" src="/icons/add-icon.svg" />
                 <p className="text-primary font-libre italic text-2xl">
                   Be Part of a Community
                 </p>
@@ -267,13 +287,19 @@ export default function SuccessSection(props: any) {
           className="bg-primary px-8 py-2 text-white rounded-lg  font-sora text-center my-12"
           href={{ pathname: "/calculator", query: { k: "h" } }}
         >
-          <button>Join Waitlist</button>
+          <button name="Invite Join Waitlist" id="invite-join-waitlist">
+            Join Waitlist
+          </button>
         </Link>
       </div>
       <div className="bg-black px-8 lg:px-14 py-12 lg:py-6">
         <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center w-full ">
           <Link href="/">
-            <img src="/icons/logo-white.svg" className="h-14" />
+            <img
+              alt="logo-white"
+              src="/icons/logo-white.svg"
+              className="h-14"
+            />
           </Link>
           <p className="text-[#434343] text-center lg:text-left font-libre italic lg:text-xl mb-8 mt-2 lg:hidden">
             Track Manage Save Loans
@@ -284,7 +310,9 @@ export default function SuccessSection(props: any) {
               pathname: "https://wa.me/9892320184",
             }}
           >
-            <button className="">Contact Us</button>
+            <button name="Contact Us" id="contact-us" className="">
+              Contact Us
+            </button>
           </Link>
         </div>
         <p className="text-[#434343] hidden lg:block text-center lg:text-left font-libre italic lg:text-xl mb-8 mt-2 lg:">
@@ -295,18 +323,18 @@ export default function SuccessSection(props: any) {
 
         <div className="space-x-4  items-center justify-center lg:hidden flex">
           <Link href="/">
-            <button>
-              <img src="/icons/social-2.svg" />
+            <button name="Facebook Link" id="facebook">
+              <img alt="facebook" src="/icons/social-2.svg" />
             </button>
           </Link>
           <Link href="/">
-            <button>
-              <img src="/icons/social-1.svg" />
+            <button name="Linkedin Link" id="linkedin">
+              <img alt="linkedin" src="/icons/social-1.svg" />
             </button>
           </Link>
           <Link href="/">
-            <button>
-              <img src="/icons/social.svg" />
+            <button name="Instagram Link" id="instagram">
+              <img alt="instagram" src="/icons/social.svg" />
             </button>
           </Link>
         </div>
@@ -320,18 +348,18 @@ export default function SuccessSection(props: any) {
 
           <div className="space-x-4  items-center hidden lg:flex">
             <Link href="/">
-              <button>
-                <img src="/icons/social-2.svg" />
+              <button name="Facebook Link" id="facebook">
+                <img alt="facebook" src="/icons/social-2.svg" />
               </button>
             </Link>
             <Link href="/">
-              <button>
+              <button name="Linkedin Link" id="linkedin">
                 <img src="/icons/social-1.svg" />
               </button>
             </Link>
             <Link href="/">
-              <button>
-                <img src="/icons/social.svg" />
+              <button name="Instagram Link" id="instagram">
+                <img alt="instagram" src="/icons/social.svg" />
               </button>
             </Link>
           </div>
@@ -344,11 +372,15 @@ export default function SuccessSection(props: any) {
         <div className="space-y-8 flex-col flex lg:block items-center">
           <div className="px-10 lg:hidden lg:px-20">
             <Link href="/">
-              <img className="" src="/icons/logo.svg" />
+              <img alt="biteloan-logo" className="" src="/icons/logo.svg" />
             </Link>
           </div>
           <div className=" lg:px-0 lg:mx-10 lg:h-56 lg:w-56 h-40 w-40">
-            <img src="/icons/success-person.png" className=" h-full w-full" />
+            <img
+              alt="success-person"
+              src="/icons/success-person.png"
+              className=" h-full w-full"
+            />
           </div>
           <div className="font-medium space-y-2 px-8 lg:px-20 lg:space-y-6">
             <div className="">
@@ -364,17 +396,11 @@ export default function SuccessSection(props: any) {
               in.
             </p>
           </div>
-
-          {/* <div className="bg-white flex-col flex items-center justify-start w-[100vw] "> */}
-          {/* <button className="bg-primary px-8 py-2 text-white rounded-lg mx-20  hidden lg:block font-sora">
-            Join Waitlist
-          </button> */}
-          {/* </div> */}
         </div>
 
         <div className="px-10 lg:px-20 hidden lg:block">
           <Link href="/">
-            <img src="/icons/logo.svg" />
+            <img alt="biteloan-logo" src="/icons/logo.svg" />
           </Link>
         </div>
       </div>
@@ -382,6 +408,7 @@ export default function SuccessSection(props: any) {
         <div>
           <Link href="/">
             <img
+              alt="biteloan-white-white"
               src="/icons/logo-white.svg"
               className="hidden lg:block lg:h-14 "
             />
@@ -390,10 +417,12 @@ export default function SuccessSection(props: any) {
 
         <div className="flex justify-end w-full">
           <img
+            alt="success-app"
             src="/icons/success-app-mobile.png"
             className="lg:hidden pt-10"
           />
           <img
+            alt="success-app"
             src="/icons/success-app-desktop.png"
             className="hidden lg:block h-[555px] w-[555px] object-contain"
           />

@@ -13,8 +13,12 @@ export default function PersonalDetails(props: any) {
         ageGroup: "18 - 25",
         bankProvider: "Axis Bank Ltd.",
         loanType: "Housing",
+        employmentStatus: "Employed",
+        prepaymentAction: undefined,
+        prepaymentAwareness: undefined,
       };
   // user variables:
+
   const [fullName, setFullName] = useState(personalDetails.fullName);
   const [email, setEmail] = useState(personalDetails.email);
   const [phoneNumber, setPhoneNumber] = useState(personalDetails.phoneNumber);
@@ -26,10 +30,18 @@ export default function PersonalDetails(props: any) {
     personalDetails.employmentStatus
   );
   const [loanType, setLoantype] = useState(personalDetails.loanType);
+  const [prepaymentAwareness, setPrepaymentAwareness] = useState(
+    personalDetails.prepaymentAwareness
+  );
+  const [prepaymentAction, setPrepaymentAction] = useState(
+    personalDetails.prepaymentAction
+  );
 
   const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [prepaymentAwarenessError, setPrepaymentAwarenessError] = useState("");
+  const [prepaymentActionError, setPrepaymentActionError] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^(?:\+?91|0)?[ -]?\d{3}[ -]?\d{4}[ -]?\d{3}$/;
@@ -64,6 +76,13 @@ export default function PersonalDetails(props: any) {
       setPhoneError("");
     }
 
+    if (!prepaymentAction) {
+      setPrepaymentActionError("Please select a value");
+    }
+    if (!prepaymentAwareness) {
+      setPrepaymentAwarenessError("Please select a value");
+    }
+
     return isValid;
   };
 
@@ -74,15 +93,136 @@ export default function PersonalDetails(props: any) {
 
         <div className="flex items-center flex-col space-y-4">
           <Link href="/">
-            <img src="/icons/logo.svg" className="pb-8" />
+            <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
           </Link>
-          <img src="/icons/person.png" className="h-12 w-12" />
+          <img
+            alt="person-icon"
+            src="/icons/person.png"
+            className="h-12 w-12"
+          />
 
           <p className="font-medium text-xl lg:text-3xl">
-            Please tell us about you
+            Please answer a few questions for us
           </p>
         </div>
 
+        {/* Form */}
+        <div className="flex justify-center">
+          <div className="rounded-2xl bg-white border border-grey-light z-10 lg:w-[33%] w-[90%] py-10 px-6 space-y-4">
+            <div className="space-y-2">
+              <label
+                htmlFor="prepayment-awareness"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Did You Know You Can Prepay Your Loan?
+              </label>
+
+              <div className="flex gap-x-2">
+                <div className="w-1/2 flex">
+                  <input
+                    id="prepayment-awareness"
+                    type="radio"
+                    value={prepaymentAwareness}
+                    checked={prepaymentAwareness === true ? true : false}
+                    onChange={() => {
+                      setPrepaymentAwareness(true);
+                      setPrepaymentAwarenessError("");
+                    }}
+                    name="prepayment-awareness"
+                    className="peer opacity-0 w-0 h-0 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="prepayment-awareness"
+                    className="flex cursor-pointer  white border border-gray-300 shadow-sm rounded-lg justify-center items-center h-10 w-full peer-checked:bg-primary peer-checked:text-white text-sm font-medium text-gray-900 dark:text-primary-black"
+                  >
+                    Yes
+                  </label>
+                </div>
+
+                <div className="w-1/2 flex">
+                  <input
+                    id="prepayment-awareness-1"
+                    type="radio"
+                    value={prepaymentAwareness}
+                    checked={prepaymentAwareness === false ? true : false}
+                    onChange={() => {
+                      setPrepaymentAwareness(false);
+                      setPrepaymentAwarenessError("");
+                    }}
+                    name="prepayment-awareness"
+                    className="peer opacity-0 w-0 h-0 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="prepayment-awareness-1"
+                    className="flex cursor-pointer  white border border-gray-300 shadow-sm rounded-lg justify-center items-center h-10 w-full peer-checked:bg-primary peer-checked:text-white  text-sm font-medium text-gray-900 dark:text-primary-black"
+                  >
+                    No
+                  </label>
+                </div>
+              </div>
+              {!prepaymentAwareness && (
+                <p className="text-xs text-red-600 mt-1">
+                  {prepaymentAwarenessError}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="multiple-loans"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Have You Every Tried To Prepay Your Loan Before?
+              </label>
+              <div className="flex gap-x-2">
+                <div className="w-1/2 flex">
+                  <input
+                    id="prepayment-action"
+                    type="radio"
+                    value={prepaymentAction}
+                    checked={prepaymentAction === true ? true : false}
+                    onChange={(e) => {
+                      setPrepaymentAction(true);
+                    }}
+                    name="prepayment-action"
+                    className="peer opacity-0 w-0 h-0 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="prepayment-action"
+                    className="flex cursor-pointer  white border border-gray-300 shadow-sm rounded-lg justify-center items-center h-10 w-full peer-checked:bg-primary peer-checked:text-white text-sm font-medium text-gray-900 dark:text-primary-black"
+                  >
+                    Yes
+                  </label>
+                </div>
+
+                <div className="w-1/2 flex">
+                  <input
+                    id="prepayment-action-1"
+                    type="radio"
+                    value={prepaymentAction}
+                    checked={prepaymentAction === false ? true : false}
+                    onChange={(e) => {
+                      setPrepaymentAction(false);
+                    }}
+                    name="prepayment-action"
+                    className="peer opacity-0 w-0 h-0 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label
+                    htmlFor="prepayment-action-1"
+                    className="flex cursor-pointer  white border border-gray-300 shadow-sm rounded-lg justify-center items-center h-10 w-full peer-checked:bg-primary peer-checked:text-white  text-sm font-medium text-gray-900 dark:text-primary-black"
+                  >
+                    No
+                  </label>
+                </div>
+              </div>
+              {!prepaymentAction && (
+                <p className="text-xs text-red-600 mt-1">
+                  {prepaymentActionError}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
         {/* Form */}
         <div className="flex justify-center">
           <div className="rounded-2xl bg-white border border-grey-light z-10 lg:w-[33%] w-[90%] py-10 px-6 space-y-4 mb-14">
@@ -177,29 +317,6 @@ export default function PersonalDetails(props: any) {
                 </div>
               </div>
 
-              {/* <div className="sm:col-span-1">
-                <label
-                  htmlFor="multiple-loans"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Do you have multiple loans?
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="multiple-loans"
-                    name="multiple-loans"
-                    // autoComplete="country-name"
-                    onChange={(e) =>
-                      setBankProvider(e.target.value === "Yes" ? true : false)
-                    }
-                    value={bankProvider === true ? "Yes" : "No"}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                  >
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-              </div> */}
               <div className="sm:col-span-1">
                 <label
                   htmlFor="multiple-loans"
@@ -292,12 +409,16 @@ export default function PersonalDetails(props: any) {
                 bankProvider: bankProvider,
                 employmentStatus,
                 loanType,
+                prepaymentAwareness,
+                prepaymentAction,
               });
 
               props.changeSection(1);
             }
           }}
           className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+          id="next-to-loan-section"
+          name="Next to Loan"
         >
           Loan Calculator
         </button>

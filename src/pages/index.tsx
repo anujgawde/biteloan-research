@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Marquee from "react-fast-marquee";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <>
       <div className="py-6 bg-white flex justify-between w-full border-b px-6 lg:px-16 items-center fixed top-0 z-50">
@@ -13,7 +10,11 @@ export default function Home() {
         </div>
         <div>
           <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
-            <button className="bg-primary lg:px-6 lg:text-base px-3 py-2 text-white rounded-lg text-xs font-sora">
+            <button
+              name="Navbar Calculate Savings"
+              id="nav-calculate-savings"
+              className="bg-primary lg:px-6 lg:text-base px-3 py-2 text-white rounded-lg text-xs font-sora"
+            >
               Calculate Savings
             </button>
           </Link>
@@ -203,7 +204,11 @@ export default function Home() {
           </p>
         </div>
         <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
-          <button className="text-black rounded-lg bg-primary-faded px-6 py-2 text-lg font-sora">
+          <button
+            name="Why Biteloan Join Waitlist"
+            id="why-biteloan-join-waitlist"
+            className="text-black rounded-lg bg-primary-faded px-6 py-2 text-lg font-sora"
+          >
             Join Waitlist
           </button>
         </Link>
@@ -233,7 +238,11 @@ export default function Home() {
           </p>
           <div>
             <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
-              <button className="bg-primary px-6 py-2 text-white rounded-lg text-lg font-sora">
+              <button
+                name="Landing Page Calculate Savings"
+                id="landing-calculate-savings"
+                className="bg-primary px-6 py-2 text-white rounded-lg text-lg font-sora"
+              >
                 Calculate Savings
               </button>
             </Link>
@@ -302,14 +311,18 @@ export default function Home() {
             className="bg-primary px-8 py-2 text-white rounded-lg mx-auto  hidden lg:block font-sora text-center w-1/3"
             href={{ pathname: "/calculator", query: { k: "h" } }}
           >
-            <button>Join Waitlist</button>
+            <button name="Invite Join Waitlist" id="invite-join-waitlist">
+              Join Waitlist
+            </button>
           </Link>
         </div>
         <Link
           className="bg-primary px-8 py-2 text-white rounded-lg  font-sora text-center my-12 lg:hidden"
           href={{ pathname: "/calculator", query: { k: "h" } }}
         >
-          <button>Join Waitlist</button>
+          <button name="Invite Join Waitlist" id="invite-join-waitlist">
+            Join Waitlist
+          </button>
         </Link>
       </div>
       <div className="bg-black px-8 lg:px-14 py-12 lg:py-6">
@@ -326,7 +339,9 @@ export default function Home() {
               pathname: "https://wa.me/9892320184",
             }}
           >
-            <button className="">Contact Us</button>
+            <button name="Contact Us" id="contact-us" className="">
+              Contact Us
+            </button>
           </Link>
         </div>
         <p className="text-[#434343] hidden lg:block text-center lg:text-left font-libre italic lg:text-xl mb-8 mt-2 lg:">
@@ -337,17 +352,17 @@ export default function Home() {
 
         <div className="space-x-4  items-center justify-center lg:hidden flex">
           <Link href="/">
-            <button>
+            <button name="Facebook Link" id="facebook">
               <img src="/icons/social-2.svg" />
             </button>
           </Link>
           <Link href="/">
-            <button>
+            <button name="Linkedin Link" id="linkedin">
               <img src="/icons/social-1.svg" />
             </button>
           </Link>
           <Link href="/">
-            <button>
+            <button name="Instagram Link" id="instagram">
               <img src="/icons/social.svg" />
             </button>
           </Link>
@@ -362,17 +377,17 @@ export default function Home() {
 
           <div className="space-x-4  items-center hidden lg:flex">
             <Link href="/">
-              <button>
+              <button name="Facebook Link" id="facebook">
                 <img src="/icons/social-2.svg" />
               </button>
             </Link>
             <Link href="/">
-              <button>
+              <button name="Linkedin Link" id="linkedin">
                 <img src="/icons/social-1.svg" />
               </button>
             </Link>
             <Link href="/">
-              <button>
+              <button name="Instagram Link" id="instagram">
                 <img src="/icons/social.svg" />
               </button>
             </Link>

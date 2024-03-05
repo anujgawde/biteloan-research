@@ -6,7 +6,7 @@ import {
   SliderTrack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { RupeeIcon } from "../../public/icons/RupeeIcon";
+
 import { rupeeFormat } from "@/utils/utils";
 
 import Link from "next/link";
@@ -19,10 +19,9 @@ export default function SavingsSection(props: any) {
   let interestRate = 0;
   let emi = 0;
   let tenure = 0;
-  let totalInterestPaidWithoutPP = 0;
-  let totalPaymentWithoutPP = 0;
-  let roi = 0;
+
   const [isLoading, setIsLoading] = useState(false);
+
   // Calculations with prepayment
   const [withPrepayment, setWithPrepayment] = useState({
     tenure: 0,
@@ -79,41 +78,30 @@ export default function SavingsSection(props: any) {
   }
 
   useEffect(() => {
-    // totalInterestPaidWithoutPP = props.withoutPrepayment.totalInterestPaid;
-    // totalPaymentWithoutPP = props.withoutPrepayment.totalPayment;
-    // roi = props.withoutPrepayment.roi;
     loanAmount = props.withoutPrepayment.loanAmount;
     interestRate = props.withoutPrepayment.roi;
     emi = props.withoutPrepayment.emi;
     tenure = props.withoutPrepayment.tenure;
 
-    // shel
     calculateWithPrepayment();
   }, [prepaymentAmount]);
   return (
     <div className="font-noto-sans bg-white">
       <div className="  space-y-8  pb-40 overflow-y-scroll max-h-[80vh] pt-10 lg:pb-0 px-[8%] lg:px-[16%] ">
         {/* Heading */}
-
         <div className="flex items-center flex-col space-y-4">
           <Link href="/">
-            <img src="/icons/logo.svg" className="pb-8" />
+            <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
           </Link>
-          {/* <div className="flex justify-between items-center space-x-10">
-            <button
-              onClick={() => {
-                props.changeSection(1);
-              }}
-              className="text-grey-500 font-medium"
-            >
-              Back
-            </button> */}
-          <img src="/icons/money-person.png" className="h-12 w-12" />
-          {/* </div> */}
+
+          <img
+            alt="money-person"
+            src="/icons/money-person.png"
+            className="h-12 w-12"
+          />
         </div>
 
-        {/* Form */}
-
+        {/* Calculation */}
         <div className="space-y-8 lg:mb-0">
           <div className="space-y-4">
             <p className="text-md lg:text-2xl text-center font-sora text-primary">
@@ -171,34 +159,30 @@ export default function SavingsSection(props: any) {
               </Slider>
             </div>
           </div>
-          {/* <div className="flex justify-between lg:justify-center lg:space-x-4 items-center ">
-            <label>Amount Prepaid Monthly</label>
-
-            <div className="px-2 py-1 bg-primary bg-opacity-10 rounded-md flex items-center justify-between">
-              <div className="h-4 w-4">
-                <RupeeIcon stroke="#8652FF" classNames="h-4 w-4" />
-              </div>
-
-              <div>
-                <p className="text-primary">{prepaymentAmount.toFixed(0)}</p>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
-      {/* CTA */}
+
+      {/* CTAs */}
       <div className="bg-white flex-col flex items-center justify-center w-[100vw] py-6 border-t h-[15vh] fixed bottom-0 z-50">
         <div className="flex items-center space-x-6">
           <button
+            name="Prev to Loan"
             onClick={() => {
               props.changeSection(1);
             }}
             className="text-grey-500 font-medium"
+            id="prev-to-loan-section"
           >
-            <img src="/icons/back-icon.svg" className="h-10 w-10" />
+            <img
+              alt="back-icon"
+              src="/icons/back-icon.svg"
+              className="h-10 w-10"
+            />
           </button>
           {!isLoading ? (
             <button
+              name="Calculator Join Waitlist"
+              id="calculator-join-waitlist"
               onClick={async () => {
                 setIsLoading(true);
                 await props.joinWaitList(prepaymentAmount, withPrepayment);
