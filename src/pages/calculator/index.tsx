@@ -68,7 +68,6 @@ export default function Home() {
       },
       body: JSON.stringify(sheetsData),
     });
-    const content = await response.json();
 
     setFormSectionId(3);
     // console.log(content, "sheets");

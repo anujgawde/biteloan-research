@@ -169,7 +169,7 @@ export default function PersonalDetails(props: any) {
 
             <div className="space-y-2">
               <label
-                htmlFor="multiple-loans"
+                htmlFor="prepayment-action"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Have You Every Tried To Prepay Your Loan Before?
@@ -399,7 +399,30 @@ export default function PersonalDetails(props: any) {
         <button
           onClick={() => {
             if (validateForm()) {
-              // Submit form data
+              const memoryData = localStorage.getItem("uid") || "0";
+              if (Date.now() - parseInt(memoryData) > 180000) {
+                const uid = Date.now();
+                localStorage.setItem("uid", uid.toString());
+                const response = fetch("/api/personal", {
+                  method: "POST",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    fullName,
+                    email,
+                    phoneNumber,
+                    ageGroup,
+                    bankProvider: bankProvider,
+                    employmentStatus,
+                    loanType,
+                    prepaymentAwareness,
+                    prepaymentAction,
+                  }),
+                });
+              } else {
+              }
 
               props.userDetails({
                 fullName,

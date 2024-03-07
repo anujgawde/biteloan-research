@@ -9,14 +9,6 @@ type SheetForm = {
   bankProvider: string;
   employmentStatus: string;
   loanType: string;
-  loanAmount?: number;
-  roi?: number;
-  tenure?: number;
-  emi?: number;
-  prepaymentAmount?: number;
-  totalInterestPaid?: number;
-  totalPayment?: number;
-  isWaitlisted: boolean;
   prepaymentAwareness: boolean;
   prepaymentAction: boolean;
 };
@@ -38,8 +30,11 @@ export default async function handler(
     // console.log("inside try");
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+        client_email: process.env.GOOGLE_CLIENT_EMAIL_PERSONAL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY_PERSONAL?.replace(
+          /\\n/g,
+          "\n"
+        ),
       },
       scopes: [
         "https://www.googleapis.com/auth/drive",
@@ -56,8 +51,8 @@ export default async function handler(
 
     // console.log("after sheets", sheets);
     const response = await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "A1:Q1",
+      spreadsheetId: process.env.GOOGLE_SHEET_ID_PERSONAL,
+      range: "A1:I1",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [
@@ -69,14 +64,6 @@ export default async function handler(
             body.bankProvider,
             body.employmentStatus,
             body.loanType,
-            body.loanAmount,
-            body.roi,
-            body.tenure,
-            body.emi,
-            body.prepaymentAmount,
-            body.totalInterestPaid,
-            body.totalPayment,
-            body.isWaitlisted === true ? "Yes" : "No",
             body.prepaymentAwareness === true ? "Yes" : "No",
             body.prepaymentAction === true ? "Yes" : "No",
           ],
