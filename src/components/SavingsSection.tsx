@@ -190,11 +190,11 @@ export default function SavingsSection(props: any) {
               }}
               className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
             >
-              Save $
-              {rupeeFormat.format(
+              {`Save 
+              ${rupeeFormat.format(
                 props.withoutPrepayment.totalInterestPaid -
                   withPrepayment.totalInterestPaid
-              )}
+              )}`}
             </button>
           ) : (
             <div className="spinner"></div>

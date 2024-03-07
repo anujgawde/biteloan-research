@@ -114,7 +114,9 @@ export default function LoanSection(props: any) {
                       className="text-primary  border-none bg-transparent flex-1 text-right w-1 lg:w-12 p-1"
                     /> */}
                     <div>
-                      <p className="text-primary">{loanAmount}</p>
+                      <p className="text-primary">
+                        {loanAmount.toLocaleString()}
+                      </p>
                     </div>
                   </div>
                 </div>
