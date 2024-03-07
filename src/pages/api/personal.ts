@@ -10,8 +10,6 @@ type SheetForm = {
   bankProvider: string;
   employmentStatus: string;
   loanType: string;
-  prepaymentAwareness: boolean;
-  prepaymentAction: boolean;
 };
 export async function POST() {
   return NextResponse.json({ message: "method allow" });
@@ -66,8 +64,6 @@ export default async function handler(
             body.bankProvider,
             body.employmentStatus,
             body.loanType,
-            body.prepaymentAwareness === true ? "Yes" : "No",
-            body.prepaymentAction === true ? "Yes" : "No",
           ],
         ],
       },
