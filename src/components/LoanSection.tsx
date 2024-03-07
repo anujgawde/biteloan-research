@@ -11,7 +11,6 @@ import { rupeeFormat } from "@/utils/utils";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 export default function LoanSection(props: any) {
-  const router = useRouter();
   const loanDetails = props.loanData
     ? props.loanData
     : {

@@ -2,11 +2,17 @@ import { useRouter } from "next/router";
 import Marquee from "react-fast-marquee";
 import { rupeeFormat } from "@/utils/utils";
 import Link from "next/link";
+import PersonalDetails from "./PersonalDetails";
+import { useState } from "react";
 export default function SuccessSection(props: any) {
   const router = useRouter();
   const queryName = router.query.k;
+  const [isAddedToWaitlist, setIsAddedToWaitlist] = useState(false);
 
-  return queryName !== "h" ? (
+  const addToWaitListFunc = () => {
+    setIsAddedToWaitlist(true);
+  };
+  return queryName !== "h" && !isAddedToWaitlist ? (
     <div className=" ">
       {/* Context Section  */}
 
@@ -104,6 +110,73 @@ export default function SuccessSection(props: any) {
             src="/icons/app-hand-mobile.webp"
             className="lg:hidden z-50"
           />
+        </div>
+      </div>
+      <div className="bg-white flex flex-col justify-center w-full py-20 items-center px-6">
+        <div className="w-full lg:w-1/2 space-y-16">
+          <div className="space-y-6">
+            <p className="text-center text-3xl font-sora">&#128233;</p>
+            <p className="text-center text-2xl lg:text-3xl font-sora">
+              We&apos;re inviting you <br></br>Join the BiteLoan Waitlist?
+            </p>
+          </div>
+          <div className="w-full flex justify-center">
+            <div className=" w-full lg:w-[70%]">
+              <PersonalDetails
+                uuid={props.uuid}
+                changeSection={(id: number) => props.changeSection(id)}
+                addToWaitList={addToWaitListFunc}
+              />
+            </div>
+          </div>
+          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 ">
+            <div className="space-y-2">
+              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
+                <img alt="magnet-icon" src="/icons/magnet-icon.svg" />
+                <p className="text-primary font-libre italic text-2xl">
+                  Exclusive Early Access
+                </p>
+              </div>
+              <p className="font-sora  text-grey-500 text-center  text-sm">
+                Be the first to experience how BiteLoan<br></br> can change your
+                financial future
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
+                <img alt="key-icon" src="/icons/key-icon.svg" />
+                <p className="text-primary font-libre italic text-2xl">
+                  Unlock Savings
+                </p>
+              </div>
+              <p className="font-sora  text-grey-500 text-center  text-sm">
+                Learn exactly how much<br></br> you can save with the app
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
+                <img alt="star-icon" src="/icons/star-icon.svg" />
+                <p className="text-primary font-libre italic text-2xl">
+                  Track Loans
+                </p>
+              </div>
+              <p className="font-sora  text-grey-500 text-center  text-sm">
+                Consolidate and manage<br></br> all your loans in one app
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
+                <img alt="add-icon" src="/icons/add-icon.svg" />
+                <p className="text-primary font-libre italic text-2xl">
+                  Be Part of a Community
+                </p>
+              </div>
+              <p className="font-sora  text-grey-500 text-center  text-sm">
+                Join a group of forward-thinkers<br></br> who are reshaping
+                their financial destinies
+              </p>
+            </div>
+          </div> */}
         </div>
       </div>
       <div className="bg-black w-full flex flex-col lg:text-lg text-sm items-center py-10 font-sora text-center pb-32">
@@ -225,73 +298,7 @@ export default function SuccessSection(props: any) {
           </button>
         </Link>
       </div>
-      <div className="bg-[#F8F9F9] flex flex-col justify-center w-full py-20 items-center px-8">
-        <div className="w-full lg:w-1/2 space-y-20">
-          <div className="space-y-6">
-            <p className="text-center text-3xl font-sora">&#128233;</p>
-            <p className="text-center text-2xl lg:text-3xl font-sora">
-              We&apos;re inviting you <br></br>Join the BiteLoan Waitlist?
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 ">
-            <div className="space-y-2">
-              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img alt="magnet-icon" src="/icons/magnet-icon.svg" />
-                <p className="text-primary font-libre italic text-2xl">
-                  Exclusive Early Access
-                </p>
-              </div>
-              <p className="font-sora  text-grey-500 text-center  text-sm">
-                Be the first to experience how BiteLoan<br></br> can change your
-                financial future
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img alt="key-icon" src="/icons/key-icon.svg" />
-                <p className="text-primary font-libre italic text-2xl">
-                  Unlock Savings
-                </p>
-              </div>
-              <p className="font-sora  text-grey-500 text-center  text-sm">
-                Learn exactly how much<br></br> you can save with the app
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img alt="star-icon" src="/icons/star-icon.svg" />
-                <p className="text-primary font-libre italic text-2xl">
-                  Track Loans
-                </p>
-              </div>
-              <p className="font-sora  text-grey-500 text-center  text-sm">
-                Consolidate and manage<br></br> all your loans in one app
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="flex  flex-col space-y-2 lg:space-x-4 items-center">
-                <img alt="add-icon" src="/icons/add-icon.svg" />
-                <p className="text-primary font-libre italic text-2xl">
-                  Be Part of a Community
-                </p>
-              </div>
-              <p className="font-sora  text-grey-500 text-center  text-sm">
-                Join a group of forward-thinkers<br></br> who are reshaping
-                their financial destinies
-              </p>
-            </div>
-          </div>
-        </div>
-        <Link
-          className="bg-primary px-8 py-2 text-white rounded-lg  font-sora text-center my-12"
-          href={{ pathname: "/calculator", query: { k: "h" } }}
-        >
-          <button name="Invite Join Waitlist" id="invite-join-waitlist">
-            Join Waitlist
-          </button>
-        </Link>
-      </div>
       <div className="bg-black px-8 lg:px-14 py-12 lg:py-6">
         <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center w-full ">
           <Link href="/">
@@ -363,6 +370,28 @@ export default function SuccessSection(props: any) {
               </button>
             </Link>
           </div>
+        </div>
+      </div>
+    </div>
+  ) : queryName === "h" && !isAddedToWaitlist ? (
+    <div className="space-y-10 my-10">
+      <div className="flex items-center flex-col space-y-4">
+        {/* <Link href="/"> */}
+        <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
+        {/* </Link> */}
+        <img alt="person-icon" src="/icons/person.png" className="h-12 w-12" />
+
+        <p className="font-medium text-xl lg:text-3xl">
+          Please answer a few questions for us
+        </p>
+      </div>
+      <div className="w-full flex justify-center">
+        <div className=" w-full lg:w-[70%]">
+          <PersonalDetails
+            uuid={props.uuid}
+            changeSection={(id: number) => props.changeSection(id)}
+            addToWaitList={addToWaitListFunc}
+          />
         </div>
       </div>
     </div>

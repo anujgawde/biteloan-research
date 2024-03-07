@@ -2,13 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 type SheetForm = {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  ageGroup: string;
-  bankProvider: string;
-  employmentStatus: string;
-  loanType: string;
+  uuid: string;
   loanAmount?: number;
   roi?: number;
   tenure?: number;
@@ -16,9 +10,6 @@ type SheetForm = {
   prepaymentAmount?: number;
   totalInterestPaid?: number;
   totalPayment?: number;
-  isWaitlisted: boolean;
-  prepaymentAwareness: boolean;
-  prepaymentAction: boolean;
 };
 export async function POST() {
   return NextResponse.json({ message: "method allow" });
@@ -62,13 +53,7 @@ export default async function handler(
       requestBody: {
         values: [
           [
-            body.fullName,
-            body.email,
-            body.phoneNumber,
-            body.ageGroup,
-            body.bankProvider,
-            body.employmentStatus,
-            body.loanType,
+            body.uuid,
             body.loanAmount,
             body.roi,
             body.tenure,
@@ -76,9 +61,6 @@ export default async function handler(
             body.prepaymentAmount,
             body.totalInterestPaid,
             body.totalPayment,
-            body.isWaitlisted === true ? "Yes" : "No",
-            body.prepaymentAwareness === true ? "Yes" : "No",
-            body.prepaymentAction === true ? "Yes" : "No",
           ],
         ],
       },

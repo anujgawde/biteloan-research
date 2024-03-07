@@ -2,21 +2,21 @@
 
 import LoanSection from "@/components/LoanSection";
 
-import PersonalDetails from "@/components/PersonalDetails";
+import ProblemSection from "@/components/ProblemSection";
 import SavingsSection from "@/components/SavingsSection";
 import SuccessSection from "@/components/SuccessSection";
-import { useRouter } from "next/router";
-
+import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const router = useRouter();
   const [formSectionId, setFormSectionId] = useState(0);
   const [prepaymentAmount, setPrepaymentAmount] = useState(0);
-  const [userDetails, setUserDetails] = useState<any>();
 
-  const setUserDetailsFunc = (data: any) => {
-    setUserDetails(data);
+  const [problemDetails, setProblemDetails] = useState<any>();
+  const [uuid, setUuid] = useState("");
+
+  const problemDetailsHandler = (data: any) => {
+    setProblemDetails(data);
   };
 
   // Setting Without Prepayment Loan Details
@@ -54,11 +54,12 @@ export default function Home() {
     setWithPrepayment(withPrep);
     setPrepaymentAmount(prepaymentAmount);
     const sheetsData = {
-      prepaymentAmount,
       ...withoutPrepayment,
-      ...userDetails,
-      isWaitlisted: true,
+      ...problemDetails,
+      prepaymentAmount,
+      uuid,
     };
+    console.log(sheetsData);
 
     const response = await fetch("/api/submit", {
       method: "POST",
@@ -74,6 +75,8 @@ export default function Home() {
   };
   // Reload Stopper:
   useEffect(() => {
+    const uniqueID = uuidv4();
+    setUuid(uniqueID);
     const confirmRefresh = (e: any) => {
       e.preventDefault();
       e.returnValue = ""; // This line is necessary for Chrome
@@ -92,10 +95,10 @@ export default function Home() {
   return (
     <main className="p">
       {formSectionId === 0 ? (
-        <PersonalDetails
+        <ProblemSection
+          setProblemDetails={problemDetailsHandler}
           changeSection={(id: number) => changeSection(id)}
-          userDetails={setUserDetailsFunc}
-          personalData={userDetails}
+          problemData={problemDetails}
         />
       ) : formSectionId === 1 ? (
         <LoanSection
@@ -114,6 +117,7 @@ export default function Home() {
           prepaymentAmount={prepaymentAmount}
           withPrepayment={withPrepayment}
           withoutPrepayment={withoutPrepayment}
+          uuid={uuid}
         />
       )}
     </main>

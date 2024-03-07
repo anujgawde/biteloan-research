@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 type SheetForm = {
+  uuid: string;
   fullName: string;
   email: string;
   phoneNumber: string;
@@ -57,6 +58,7 @@ export default async function handler(
       requestBody: {
         values: [
           [
+            body.uuid,
             body.fullName,
             body.email,
             body.phoneNumber,
