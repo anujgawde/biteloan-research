@@ -59,7 +59,6 @@ export default function Home() {
       prepaymentAmount,
       uuid,
     };
-    console.log(sheetsData);
 
     const response = await fetch("/api/submit", {
       method: "POST",
