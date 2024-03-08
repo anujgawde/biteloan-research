@@ -9,7 +9,9 @@ export default function Home() {
           <img src="/icons/logo.svg" className="h-8 lg:h-12" />
         </div>
         <div>
-          <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
+          <Link
+            href={{ pathname: "https://bit.ly/3v30jTl", query: { k: "h" } }}
+          >
             <button
               name="Navbar Calculate Savings"
               id="nav-calculate-savings"
@@ -203,7 +205,7 @@ export default function Home() {
             journey
           </p>
         </div>
-        <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
+        <Link href={{ pathname: "https://bit.ly/3uWoWB9", query: { k: "h" } }}>
           <button
             name="Why Biteloan Join Waitlist"
             id="why-biteloan-join-waitlist"
@@ -237,7 +239,9 @@ export default function Home() {
             Saving calculator on biteloan
           </p>
           <div>
-            <Link href={{ pathname: "/calculator", query: { k: "h" } }}>
+            <Link
+              href={{ pathname: "https://bit.ly/3v30jTl", query: { k: "h" } }}
+            >
               <button
                 name="Landing Page Calculate Savings"
                 id="landing-calculate-savings"
@@ -309,7 +313,7 @@ export default function Home() {
 
           <Link
             className="bg-primary px-8 py-2 text-white rounded-lg mx-auto  hidden lg:block font-sora text-center w-1/3"
-            href={{ pathname: "/calculator", query: { k: "h" } }}
+            href={{ pathname: "https://bit.ly/3uWoWB9", query: { k: "h" } }}
           >
             <button name="Invite Join Waitlist" id="invite-join-waitlist">
               Join Waitlist

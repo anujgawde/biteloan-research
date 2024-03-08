@@ -70,13 +70,13 @@ export default function SuccessSection(props: any) {
           INTRODUCING
         </p>
         <div>
-          <Link href="/">
-            <img
-              alt="biteloan-logo"
-              src="/icons/logo.svg"
-              className="lg:h-40 h-20"
-            />
-          </Link>
+          {/* <Link href="/"> */}
+          <img
+            alt="biteloan-logo"
+            src="/icons/logo.svg"
+            className="lg:h-40 h-20"
+          />
+          {/* </Link> */}
         </div>
 
         <p className="lg:text-2xl text-lg text-center font-libre italic">
@@ -376,9 +376,9 @@ export default function SuccessSection(props: any) {
   ) : queryName === "h" && !isAddedToWaitlist ? (
     <div className="space-y-10 my-10">
       <div className="flex items-center flex-col space-y-4">
-        {/* <Link href="/"> */}
-        <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
-        {/* </Link> */}
+        <Link href="/">
+          <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
+        </Link>
         <img alt="person-icon" src="/icons/person.png" className="h-12 w-12" />
 
         <p className="font-medium text-xl lg:text-3xl">

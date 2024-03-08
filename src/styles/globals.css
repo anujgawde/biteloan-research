@@ -77,6 +77,15 @@
   animation: spin 1s linear infinite; /* Apply spin animation */
   margin: 20px auto; /* Center the spinner */
 }
+.spinner-1 {
+  border: 6px solid rgba(134, 82, 255, 0.3); /* Set border color */
+  border-top: 6px solid #8652ff; /* Set top border color to create spinner effect */
+  border-radius: 50%; /* Create a circular border */
+  width: 45px; /* Set width and height */
+  height: 45px;
+  animation: spin 1s linear infinite; /* Apply spin animation */
+  margin: px auto; /* Center the spinner */
+}
 
 @keyframes spin {
   0% {

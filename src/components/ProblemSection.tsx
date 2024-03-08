@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Link from "next/link";
 export default function ProblemSection(props: any) {
   const personalDetails = props.problemData
     ? props.problemData
@@ -15,7 +15,7 @@ export default function ProblemSection(props: any) {
   );
   const [prepaymentAwarenessError, setPrepaymentAwarenessError] = useState("");
   const [prepaymentActionError, setPrepaymentActionError] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const validateForm = () => {
     let isValid = true;
 
@@ -36,9 +36,9 @@ export default function ProblemSection(props: any) {
         {/* Heading */}
 
         <div className="flex items-center flex-col space-y-4">
-          {/* <Link href="/"> */}
-          <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
-          {/* </Link> */}
+          <Link href="/">
+            <img alt="biteloan-logo" src="/icons/logo.svg" className="pb-8" />
+          </Link>
           <img
             alt="person-icon"
             src="/icons/person.png"
@@ -167,23 +167,31 @@ export default function ProblemSection(props: any) {
         </div>
       </div>
       <div className="bg-white flex-col flex items-center justify-center w-[100vw] py-6 border-t h-[15vh] fixed bottom-0 z-50">
-        <button
-          onClick={() => {
-            if (validateForm()) {
-              props.setProblemDetails({
-                prepaymentAwareness,
-                prepaymentAction,
-              });
+        <div className="flex items-center space-x-6">
+          {!isLoading ? (
+            <button
+              onClick={async () => {
+                setIsLoading(true);
+                if (validateForm()) {
+                  await props.setProblemDetails({
+                    prepaymentAwareness,
+                    prepaymentAction,
+                  });
 
-              props.changeSection(1);
-            }
-          }}
-          className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
-          id="next-to-loan-section"
-          name="Next to Loan"
-        >
-          Loan Calculator
-        </button>
+                  props.changeSection(1);
+                }
+                setIsLoading(false);
+              }}
+              className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+              id="next-to-loan-section"
+              name="Next to Loan"
+            >
+              Loan Calculator
+            </button>
+          ) : (
+            <div className="spinner"></div>
+          )}
+        </div>
       </div>
     </div>
   );
