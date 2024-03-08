@@ -32,7 +32,7 @@ export default function LoanSection(props: any) {
   );
   const [totalPayment, setTotalPayment] = useState(loanDetails.totalPayment);
   const [emi, setEmi] = useState(loanDetails.emi);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   function calculateEMI(
     loanAmount: number,
     annualInterestRate: number,
@@ -261,25 +261,25 @@ export default function LoanSection(props: any) {
               className="h-10 w-10"
             />
           </button>
-          {!isLoading ? (
-            <button
-              onClick={async () => {
-                // props.setLoanDetails({ loanAmount, interestRate: roi });
-                setIsLoading(true);
-                await props.addLoanDetails();
-                setIsLoading(false);
+          {/* {!isLoading ? ( */}
+          <button
+            onClick={async () => {
+              // props.setLoanDetails({ loanAmount, interestRate: roi });
+              // setIsLoading(true);
+              await props.addLoanDetails();
+              // setIsLoading(false);
 
-                props.changeSection(2);
-              }}
-              className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
-              id="next-to-savings-section"
-              name="Next to Savings"
-            >
-              Calculate Savings
-            </button>
-          ) : (
+              props.changeSection(2);
+            }}
+            className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+            id="next-to-savings-section"
+            name="Next to Savings"
+          >
+            Calculate Savings
+          </button>
+          {/* ) : (
             <div className="spinner-1"></div>
-          )}
+          )} */}
         </div>
       </div>
 

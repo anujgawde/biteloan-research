@@ -15,7 +15,7 @@ export default function ProblemSection(props: any) {
   );
   const [prepaymentAwarenessError, setPrepaymentAwarenessError] = useState("");
   const [prepaymentActionError, setPrepaymentActionError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const validateForm = () => {
     let isValid = true;
 
@@ -168,29 +168,29 @@ export default function ProblemSection(props: any) {
       </div>
       <div className="bg-white flex-col flex items-center justify-center w-[100vw] py-6 border-t h-[15vh] fixed bottom-0 z-50">
         <div className="flex items-center space-x-6">
-          {!isLoading ? (
-            <button
-              onClick={async () => {
-                setIsLoading(true);
-                if (validateForm()) {
-                  await props.setProblemDetails({
-                    prepaymentAwareness,
-                    prepaymentAction,
-                  });
+          {/* {!isLoading ? ( */}
+          <button
+            onClick={async () => {
+              // setIsLoading(true);
+              if (validateForm()) {
+                props.setProblemDetails({
+                  prepaymentAwareness,
+                  prepaymentAction,
+                });
 
-                  props.changeSection(1);
-                }
-                setIsLoading(false);
-              }}
-              className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
-              id="next-to-loan-section"
-              name="Next to Loan"
-            >
-              Loan Calculator
-            </button>
-          ) : (
+                props.changeSection(1);
+              }
+              // setIsLoading(false);
+            }}
+            className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"
+            id="next-to-loan-section"
+            name="Next to Loan"
+          >
+            Loan Calculator
+          </button>
+          {/* ) : (
             <div className="spinner"></div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

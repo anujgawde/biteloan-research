@@ -15,8 +15,8 @@ export default function Home() {
   const [problemDetails, setProblemDetails] = useState<any>();
   const [uuid, setUuid] = useState("");
 
-  const problemDetailsHandler = async (data: any) => {
-    const response = await fetch("/api/prepayment", {
+  const problemDetailsHandler = (data: any) => {
+    const response = fetch("/api/prepayment", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -79,9 +79,9 @@ export default function Home() {
 
     setFormSectionId(3);
   };
-  const addLoanDetailsHandler = async () => {
+  const addLoanDetailsHandler = () => {
     const sheetsData = { uuid, ...withoutPrepayment, ...problemDetails };
-    const response = await fetch("/api/loan", {
+    const response = fetch("/api/loan", {
       method: "POST",
       headers: {
         Accept: "application/json",
