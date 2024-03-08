@@ -5,6 +5,7 @@ import Script from "next/script";
 export default function Document() {
   return (
     <Html lang="en">
+      <title>Biteloan</title>
       <Head>
         <link rel="shortcut icon" href="/favicon.svg" />
         <Script
