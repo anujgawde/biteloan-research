@@ -264,6 +264,8 @@ export default function LoanSection(props: any) {
           <button
             onClick={() => {
               // props.setLoanDetails({ loanAmount, interestRate: roi });
+              props.addLoanDetails();
+
               props.changeSection(2);
             }}
             className="bg-primary px-8 py-2 text-white rounded-lg mx-auto"

@@ -16,6 +16,14 @@ export default function Home() {
   const [uuid, setUuid] = useState("");
 
   const problemDetailsHandler = (data: any) => {
+    const response = fetch("/api/prepayment", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ uuid, ...data }),
+    });
     setProblemDetails(data);
   };
 
@@ -70,7 +78,17 @@ export default function Home() {
     });
 
     setFormSectionId(3);
-    // console.log(content, "sheets");
+  };
+  const addLoanDetailsHandler = () => {
+    const sheetsData = { uuid, ...withoutPrepayment, ...problemDetails };
+    const response = fetch("/api/loan", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sheetsData),
+    });
   };
   // Reload Stopper:
   useEffect(() => {
@@ -104,6 +122,7 @@ export default function Home() {
           changeSection={(id: number) => changeSection(id)}
           updateWithoutPrepayment={updateWithoutPrepayment}
           loanData={withoutPrepayment}
+          addLoanDetails={addLoanDetailsHandler}
         />
       ) : formSectionId === 2 ? (
         <SavingsSection
