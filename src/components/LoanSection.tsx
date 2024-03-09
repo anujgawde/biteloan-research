@@ -105,19 +105,30 @@ export default function LoanSection(props: any) {
                       <RupeeIcon stroke="#8652FF" classNames="h-4 w-4" />
                     </div>
 
-                    {/* <input
-                      value={loanAmount}
+                    <input
+                      value={loanAmount.toString().replace(/^0+/, "")}
                       min={100000}
                       max={10000000}
                       type="number"
-                      onChange={(e) => setLoanAmount(parseInt(e.target.value))}
-                      className="text-primary  border-none bg-transparent flex-1 text-right w-1 lg:w-12 p-1"
-                    /> */}
-                    <div>
+                      placeholder="0"
+                      onChange={(e) => {
+                        if (e.target.value === "") {
+                          setLoanAmount(0);
+                        } else {
+                          if (parseInt(e.target.value) > 50000000) {
+                            return;
+                          } else {
+                            setLoanAmount(parseInt(e.target.value));
+                          }
+                        }
+                      }}
+                      className="text-primary bg-transparent placeholder:text-primary flex-1 text-right w-1 lg:w-12 p-1 border-transparent focus:border-transparent focus:ring-0"
+                    />
+                    {/* <div>
                       <p className="text-primary">
                         {loanAmount.toLocaleString()}
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -127,6 +138,7 @@ export default function LoanSection(props: any) {
                   max={10000000}
                   step={1000}
                   value={loanAmount}
+                  focusThumbOnChange={false}
                   onChange={(e) => setLoanAmount(e)}
                 >
                   <SliderTrack bg="#F6F5F7">
@@ -145,25 +157,40 @@ export default function LoanSection(props: any) {
                 <div className="flex justify-between items-center lg:space-x-8">
                   <label>Rate of Interest</label>
 
-                  <div className="px-2 py-1 bg-primary bg-opacity-10 rounded-md flex items-center justify-between w-32">
-                    <div></div>
+                  <div className="px-2 py-1 bg-primary text-primary bg-opacity-10 rounded-md flex items-center justify-between w-32">
+                    {/* {roi} */}
 
-                    <div>
-                      <p className="text-primary">
-                        {roi}
-                        <span>&#37;</span>
-                      </p>
-                    </div>
+                    <input
+                      value={roi.toString().replace(/^0+/, "")}
+                      min={1}
+                      max={40}
+                      type="number"
+                      placeholder="0"
+                      onChange={(e) => {
+                        if (e.target.value === "") {
+                          setRoi(0);
+                        } else {
+                          if (parseInt(e.target.value) > 40) {
+                            return;
+                          } else {
+                            setRoi(parseFloat(e.target.value));
+                          }
+                        }
+                      }}
+                      className="text-primary bg-transparent placeholder:text-primary flex-1 text-right w-1 lg:w-12 p-1 border-transparent focus:border-transparent focus:ring-0"
+                    />
+                    <div>&#37;</div>
                   </div>
                 </div>
 
                 <Slider
                   min={1}
-                  max={30}
+                  max={40}
                   defaultValue={1}
-                  step={0.5}
+                  step={0.1}
                   value={roi}
                   onChange={(e) => setRoi(e)}
+                  focusThumbOnChange={false}
                 >
                   <SliderTrack bg="#F6F5F7">
                     {" "}
@@ -178,16 +205,27 @@ export default function LoanSection(props: any) {
                 <div className="flex justify-between items-center lg:space-x-8">
                   <label>Loan Tenure</label>
 
-                  <div className="px-2 py-1 bg-primary bg-opacity-10 rounded-md flex items-center justify-between w-32">
-                    <div>
-                      {/* <img src="/icons/rupee-icon.svg" className="h-4 w-4" /> */}
-                    </div>
-
-                    <div>
-                      <p className="text-primary ">
-                        {tenure} <span className="text-sm font-thin">Yr</span>
-                      </p>
-                    </div>
+                  <div className="px-2 py-1 bg-primary text-primary  bg-opacity-10 rounded-md flex items-center justify-between w-32">
+                    <input
+                      value={tenure.toString().replace(/^0+/, "")}
+                      min={1}
+                      max={30}
+                      type="number"
+                      placeholder="0"
+                      onChange={(e) => {
+                        if (e.target.value === "") {
+                          setTenure(0);
+                        } else {
+                          if (parseInt(e.target.value) > 40) {
+                            return;
+                          } else {
+                            setTenure(parseInt(e.target.value));
+                          }
+                        }
+                      }}
+                      className="text-primary bg-transparent placeholder:text-primary flex-1 text-right w-1 lg:w-12 p-1 border-transparent focus:border-transparent focus:ring-0"
+                    />{" "}
+                    <div className="text-sm font-thin">Yr</div>
                   </div>
                 </div>
 
@@ -198,6 +236,7 @@ export default function LoanSection(props: any) {
                   step={1}
                   value={tenure}
                   onChange={(e) => setTenure(e)}
+                  focusThumbOnChange={false}
                 >
                   <SliderTrack bg="#F6F5F7">
                     {" "}
@@ -217,19 +256,31 @@ export default function LoanSection(props: any) {
               <div className="space-y-4">
                 <p>EMI Amount</p>
                 <p className="font-libre italic text-2xl lg:text-4xl text-secondary">
-                  {rupeeFormat.format(emi)}
+                  {emi === Infinity
+                    ? rupeeFormat.format(0)
+                    : Number.isNaN(emi)
+                    ? rupeeFormat.format(0)
+                    : rupeeFormat.format(emi)}
                 </p>
               </div>
               <div className="space-y-4">
                 <p>Total Interest Amount</p>
                 <p className="font-libre italic text-2xl lg:text-4xl text-secondary">
-                  {rupeeFormat.format(totalInterestPaid)}
+                  {totalInterestPaid === Infinity
+                    ? rupeeFormat.format(0)
+                    : Number.isNaN(totalInterestPaid)
+                    ? rupeeFormat.format(0)
+                    : rupeeFormat.format(totalInterestPaid)}
                 </p>
               </div>
               <div className="space-y-4">
                 <p>Total Amount Paid</p>
                 <p className="font-libre italic text-2xl lg:text-4xl text-secondary">
-                  {rupeeFormat.format(totalPayment)}
+                  {totalPayment === Infinity
+                    ? rupeeFormat.format(0)
+                    : Number.isNaN(totalPayment)
+                    ? rupeeFormat.format(0)
+                    : rupeeFormat.format(totalPayment)}
                 </p>
               </div>
             </div>
@@ -241,8 +292,13 @@ export default function LoanSection(props: any) {
       <div className="bg-white flex-col flex items-center  font-sora justify-center w-[100vw] py-6 border-t h-[20vh] lg:h-[15vh]  fixed bottom-0 space-y-4 z-50">
         <p className="text-xl text-center lg:px-0 lg:text-left ">
           Want to save on{" "}
-          <span className="font-libre text-secondary">
-            {rupeeFormat.format(totalInterestPaid)} ?
+          <span className="font-libre text-secondary italic">
+            {totalInterestPaid === Infinity
+              ? rupeeFormat.format(0)
+              : Number.isNaN(totalInterestPaid)
+              ? rupeeFormat.format(0)
+              : rupeeFormat.format(totalInterestPaid)}
+            ?
           </span>
         </p>
 
